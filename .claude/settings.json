@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(python -)",
+      "Bash(curl -s \"https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://explore.exceeders.com&strategy=desktop&category=performance&category=seo&category=accessibility&category=best-practices\" -o /tmp/psi_desktop.json)",
+      "Bash(echo \"exit=$?\")",
+      "Read(//tmp/**)",
+      "Bash(python -c \"import json;d=json.load\\(open\\('/tmp/psi_desktop.json'\\)\\);print\\('OK, has lighthouse:', 'lighthouseResult' in d\\); print\\(d.get\\('error',{}\\).get\\('message','no error'\\)\\)\")",
+      "Bash(curl -s -D - -o /dev/null https://explore.exceeders.com)",
+      "Bash(curl -s https://explore.exceeders.com -o /tmp/live.html)"
+    ]
+  }
+}

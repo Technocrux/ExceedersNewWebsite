@@ -1,0 +1,8 @@
+# robots.txt for eXceeders
+User-agent: *
+Allow: /
+
+# Block preview/staging pages and any low-signal routes
+Disallow: /project-plus
+
+Sitemap: https://www.exceeders.com/sitemap.xml
