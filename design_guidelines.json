@@ -1,0 +1,135 @@
+{
+  "project_context": {
+    "name": "eXceeders Landing Page",
+    "app_type": "marketing_site",
+    "description": "Premium landing page for eXceeders, a B2B digital transformation & managed IT services company.",
+    "tone": "Modern, sophisticated, technology-focused, premium, clean, spacious, trustworthy",
+    "theme_strategy": "Hybrid theme - Light backgrounds for header/hero to support the provided dark logo, alternating with deep dark blue gradients for high-impact sections (Stats, Footer) to utilize the brand palette effectively."
+  },
+  "brand_identity": {
+    "colors": {
+      "primary_foundation": {
+        "start": "#0D1F2D",
+        "end": "#06121B",
+        "description": "Dark Blue Gradient. Use for structural sections, high-impact stats, and footer."
+      },
+      "welcome_pine": "#07404B",
+      "welcome_white": "#FFFFFF",
+      "pistachio": "#C6E5DE",
+      "sea": "#9ED3CE",
+      "primary_emerald": "#059669",
+      "secondary_blue": "#43669E",
+      "metal": "#D6D8D8",
+      "steel": "#B8BCBC"
+    },
+    "typography": {
+      "primary": "Manrope",
+      "import_instructions": "Import 'Manrope' from Google Fonts and set it as the sans font family in tailwind.config.js.",
+      "scales": {
+        "h1": "text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-tight",
+        "h2": "text-4xl md:text-5xl font-bold tracking-tight",
+        "h3": "text-2xl md:text-3xl font-bold tracking-tight",
+        "h4": "text-xl font-semibold",
+        "body_lg": "text-lg md:text-xl text-secondary-blue/80 font-medium leading-relaxed",
+        "body": "text-base text-gray-600 leading-relaxed",
+        "overline": "text-sm uppercase tracking-[0.2em] font-bold text-primary-emerald"
+      }
+    },
+    "assets": {
+      "logo": "https://customer-assets.emergentagent.com/job_564b966b-fa7c-4da1-b3b0-c4b1cd04c9db/artifacts/logos/exceeders-logo.png",
+      "logo_specs": "Dark version on light bg (navy text, green X). MUST be placed on light/white background for visibility."
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing Philosophy. Use 2-3x more spacing than typical. Sections must breathe.",
+    "section_padding": "py-24 md:py-32",
+    "container": "max-w-7xl mx-auto px-6 md:px-12",
+    "grid_gaps": "gap-8 md:gap-12"
+  },
+  "components": {
+    "header": {
+      "type": "Sticky Nav",
+      "style": "bg-white/90 backdrop-blur-xl border-b border-gray-100 z-50",
+      "layout": "Flexbox, logo left, nav links center/right, CTA right.",
+      "links": "Home (active), CIO Plus, Talent Plus, Support Plus, Dev Plus, Project Plus",
+      "active_state": "text-primary-emerald font-semibold",
+      "inactive_state": "text-gray-600 hover:text-gray-900 transition-colors",
+      "cta": "Pill-shaped, bg-primary-emerald text-white hover:bg-emerald-700 hover:shadow-lg shadow-emerald-500/20"
+    },
+    "hero": {
+      "background": "bg-welcome-white overflow-hidden relative",
+      "layout": "Grid cols-1 lg:grid-cols-2 gap-16 items-center min-h-[90vh]",
+      "visual": "Animated network/nodes diagram. CREATE THIS WITH SVG + FRAMER MOTION. Do NOT use stock photos. Draw interconnected nodes (circles) in Primary Emerald and Sea tones with glowing opacity, lines connecting them, and pulse animations.",
+      "typography": "H1 text-gray-900. Subtext text-secondary-blue."
+    },
+    "trusted_by": {
+      "background": "bg-gray-50 border-y border-gray-100",
+      "style": "Monochrome logos in a subtle infinite scrolling marquee. Use react-fast-marquee or CSS animations."
+    },
+    "stats_row": {
+      "background": "bg-welcome-white",
+      "layout": "Grid cols-1 md:grid-cols-3 gap-8",
+      "cards": "Flat design, 1px border-metal/50, rounded-2xl, p-8. Use Framer Motion 'useInView' to animate counters from 0 to target (30, 90, 99).",
+      "accents": "Large text in Primary Emerald."
+    },
+    "services_ways_we_help": {
+      "background": "bg-[#FAFAFA]",
+      "layout": "Bento Grid or 2x2 grid (grid-cols-1 md:grid-cols-2).",
+      "card_style": "Neumorphic/Crisp hybrid. bg-white, 1px border-metal, rounded-2xl, p-10. Hover: -translate-y-2, shadow-xl, border-pistachio. Include Lucide icons colored in Sea/Emerald.",
+      "items": [
+        {"title": "CIO Plus", "label": "Strategic Leadership"},
+        {"title": "Talent Plus", "label": "Resource Augmentation"},
+        {"title": "Support Plus", "label": "Managed Operations"},
+        {"title": "Dev Plus", "label": "Custom Engineering"}
+      ]
+    },
+    "process_why_our_model_wins": {
+      "background": "bg-welcome-white",
+      "layout": "Horizontal timeline on desktop, vertical on mobile.",
+      "visuals": "4-step connected diagram. Use a dashed SVG line connecting 4 circular nodes. Animate the line filling up (stroke-dashoffset) on scroll.",
+      "steps": ["Understand", "Match", "Manage", "Measure"]
+    },
+    "our_network_stats": {
+      "background": "bg-gradient-to-br from-[#0D1F2D] to-[#06121B]",
+      "layout": "Massive typography, flex/grid layout.",
+      "typography": "text-welcome-white with accents in pistachio and sea.",
+      "decorative": "Add a subtle grain overlay or very faint Welcome Pine (#07404B) glowing orbs in background."
+    },
+    "audience_who_else": {
+      "background": "bg-gray-50",
+      "layout": "Grid cols-1 md:grid-cols-3 gap-6",
+      "card_style": "Solid white cards, top border in primary_emerald. Icon-driven.",
+      "items": ["Channel Partners", "IT Service Providers", "Job Seekers"]
+    },
+    "final_cta": {
+      "background": "bg-welcome-white border-t border-metal/30",
+      "layout": "Center aligned, max-w-3xl mx-auto text-center.",
+      "buttons": "Primary: bg-primary-emerald text-white. Secondary: border-2 border-secondary-blue text-secondary-blue bg-transparent hover:bg-secondary-blue hover:text-white."
+    },
+    "footer": {
+      "background": "bg-[#06121B]",
+      "typography": "text-metal text-sm",
+      "logo_handling": "Since background is dark and logo is dark, place logo in a white rounded rectangle or highly visible container."
+    }
+  },
+  "motion_and_interactions": {
+    "scroll_reveal": "Staggered fade-up for all section children using Framer Motion (initial={{opacity:0, y:30}} whileInView={{opacity:1, y:0}} viewport={{once:true}}).",
+    "hover_states": "All buttons must scale to 1.05 and adjust shadow. Service cards lift on hover.",
+    "network_diagram": "Use Framer Motion to infinitely animate x/y coordinates of SVG circles (nodes) slightly to simulate floating/breathing."
+  },
+  "development_rules": {
+    "testing": "All interactive elements (buttons, links, inputs, cards) MUST include a 'data-testid' attribute (e.g., data-testid='hero-cta-button').",
+    "accessibility": "Ensure contrast ratios. Use APCA guidelines. Do not use fully transparent backgrounds behind text. Explicit hover/focus states.",
+    "files": "Use .js and .jsx files (not .tsx)."
+  },
+  "universal_guidelines_for_main_agent": [
+    "You are E1, a Creative Designer. Avoid generic 'AI slop' aesthetics (no purple/violet generic gradients, no boring centered text blocks without contrast).",
+    "Use Manrope font EXCLUSIVELY.",
+    "Strictly adhere to the brand colors provided. Do not invent new hex codes. Dark blue gradient is the foundation; Emerald is the action color.",
+    "DO NOT USE STOCK PHOTOS for the diagrams or cards. Use SVG-based custom art or Lucide React icons.",
+    "Ensure 'Book a Consultation' and 'Explore Our Services' buttons do nothing (dead placeholders) but look fully interactive.",
+    "If the header is sticky, ensure it has a solid or highly-blurred background to maintain logo and link legibility over content.",
+    "Never center-align large blocks of body text; only center headers or short CTA snippets.",
+    "For 'Page Coming Soon' links, attach a simple toast notification (using sonner) instead of actual routing."
+  ]
+}
