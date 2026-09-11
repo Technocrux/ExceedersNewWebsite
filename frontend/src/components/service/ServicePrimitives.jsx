@@ -1,5 +1,34 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+
+/** Animated count-up number, triggers once when scrolled into view. */
+export const CountUpNumber = ({ from = 0, to, duration = 1.4, decimals = 0 }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [value, setValue] = useState(from);
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = null;
+    let raf;
+    const tick = (timestamp) => {
+      if (start === null) start = timestamp;
+      const progress = Math.min((timestamp - start) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(from + (to - from) * eased);
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, from, to, duration]);
+
+  const formatted = decimals > 0
+    ? value.toFixed(decimals)
+    : Math.round(value).toLocaleString();
+
+  return <span ref={ref}>{formatted}</span>;
+};
 
 /** Wrapper for full-width sections with consistent padding */
 export const Section = ({ children, className = "", id, dataTestid }) => (
@@ -41,7 +70,7 @@ export const SectionHeading = ({
       </Eyebrow>
     )}
     <h2
-      className={`mt-4 font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.05] ${
+      className={`mt-4 font-display text-3xl md:text-4xl font-extrabold tracking-tight leading-tight ${
         invert ? "text-white" : "text-brand-dark"
       }`}
     >
@@ -69,6 +98,7 @@ export const ServiceHero = ({
   onCtaClick,
   visualSlot,
   testId,
+  titleClassName = "text-4xl md:text-5xl lg:text-[57px]",
 }) => {
   const CtaTag = ctaHref ? "a" : "button";
   const ctaProps = ctaHref
@@ -103,13 +133,13 @@ export const ServiceHero = ({
             visualSlot ? "lg:grid-cols-12 gap-12" : ""
           } items-center`}
         >
-          <div className={visualSlot ? "lg:col-span-7" : ""}>
+          <div className={visualSlot ? "lg:col-span-7" : "max-w-5xl"}>
             {eyebrow && (
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-sea"
+                className="text-[12px] font-semibold uppercase tracking-[0.22em] text-brand-sea"
               >
                 {eyebrow}
               </motion.p>
@@ -118,7 +148,7 @@ export const ServiceHero = ({
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.05 }}
-              className="mt-4 font-display text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.02] text-white"
+              className={`mt-4 font-display ${titleClassName} font-extrabold tracking-tight leading-[1.02] text-white`}
             >
               {title}
             </motion.h1>
@@ -127,7 +157,7 @@ export const ServiceHero = ({
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="mt-6 max-w-2xl text-[18px] md:text-[19px] leading-relaxed text-slate-300"
+                className="mt-6 max-w-3xl text-[18px] md:text-[21px] leading-relaxed text-slate-200"
               >
                 {subtitle}
               </motion.p>
@@ -157,6 +187,117 @@ export const ServiceHero = ({
     </section>
   );
 };
+
+/**
+ * Dark split section pairing "why we're different" narrative content
+ * with a "what this means for you" benefit card.
+ */
+export const DifferenceMeansSection = ({
+  eyebrow,
+  title,
+  subtitle,
+  tags,
+  quoteTitle,
+  quoteDesc,
+  meansEyebrow = "What This Means For You",
+  meansItems,
+  testId,
+}) => (
+  <Section
+    className="bg-gradient-to-br from-[#07404B] to-[#0D1F2D] relative overflow-hidden"
+    dataTestid={testId}
+  >
+    <div className="absolute -top-20 -right-16 w-[360px] h-[360px] rounded-full bg-brand-emerald/30 glow-orb" />
+    <div className="absolute -bottom-20 -left-16 w-[320px] h-[320px] rounded-full bg-brand-sea/20 glow-orb" />
+    <Container>
+      <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+        <div className="lg:pr-6">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-6 bg-brand-sea" />
+            <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-brand-sea">
+              {eyebrow}
+            </span>
+          </div>
+          <h2 className="mt-5 font-display text-3xl md:text-4xl font-extrabold text-white leading-tight">
+            {title}
+          </h2>
+          {subtitle && (
+            <p className="mt-6 text-[17px] leading-relaxed text-slate-200">
+              {subtitle}
+            </p>
+          )}
+          {tags && tags.length > 0 && (
+            <div className="mt-10 flex flex-col items-start gap-3">
+              {[tags.filter((_, i) => i % 2 === 0), tags.filter((_, i) => i % 2 === 1)]
+                .reduce((rows, col) => {
+                  col.forEach((tag, i) => {
+                    rows[i] = rows[i] || [];
+                    rows[i].push(tag);
+                  });
+                  return rows;
+                }, [])
+                .map((row, ri) => (
+                  <div key={ri} className="flex items-start gap-3">
+                    {row.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[13.5px] font-medium text-slate-100 whitespace-nowrap"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                ))}
+            </div>
+          )}
+          {(quoteTitle || quoteDesc) && (
+            <div className="mt-8 border-l-2 border-brand-emerald pl-5">
+              {quoteTitle && (
+                <p className="font-display text-[20px] md:text-[23px] font-extrabold leading-snug text-white">
+                  {quoteTitle}
+                </p>
+              )}
+              {quoteDesc && (
+                <p className="mt-2 text-[14px] md:text-[15px] font-medium text-slate-300">
+                  {quoteDesc}
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="h-full flex flex-col rounded-3xl border border-white/10 bg-white/[0.04] p-7 md:p-8"
+        >
+          <p className="pb-5 border-b border-white/10 text-[12px] font-semibold uppercase tracking-[0.2em] text-brand-sea">
+            {meansEyebrow}
+          </p>
+          <div className="flex-1 flex flex-col justify-center">
+            {meansItems.map((item, i) => (
+              <div
+                key={item.title}
+                className={`flex items-center gap-4 py-4 ${
+                  i !== meansItems.length - 1 ? "border-b border-white/10" : "pb-0"
+                }`}
+              >
+                <div className="w-10 h-10 rounded-xl bg-brand-emerald/10 border border-brand-emerald/25 flex items-center justify-center shrink-0">
+                  <item.Icon className="w-[18px] h-[18px] text-brand-sea" strokeWidth={1.9} />
+                </div>
+                <p className="font-display text-[16px] font-bold text-white leading-snug">
+                  {item.title}
+                </p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </Container>
+  </Section>
+);
 
 /** Consistent card with icon */
 export const FeatureCard = ({

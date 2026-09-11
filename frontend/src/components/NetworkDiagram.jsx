@@ -188,43 +188,6 @@ export const NetworkDiagram = () => {
           </motion.g>
         ))}
       </svg>
-
-      {/* Floating UI card 1 */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="absolute top-4 -left-3 md:-left-8 bg-white rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-100 px-4 py-3 flex items-center gap-3"
-      >
-        <div className="w-8 h-8 rounded-lg bg-brand-emerald/10 grid place-items-center">
-          <div className="w-2 h-2 rounded-full bg-brand-emerald animate-pulse" />
-        </div>
-        <div>
-          <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Matches</p>
-          <p className="text-[15px] font-bold text-brand-dark tabular-nums">98% fit</p>
-        </div>
-      </motion.div>
-
-      {/* Floating UI card 2 */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-6 -right-2 md:-right-6 bg-white rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-100 px-4 py-3"
-      >
-        <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Delivery</p>
-        <div className="flex items-center gap-2 mt-1">
-          <div className="h-1.5 w-24 bg-slate-100 rounded-full overflow-hidden">
-            <motion.div
-              className="h-full bg-brand-emerald rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: "82%" }}
-              transition={{ delay: 1.5, duration: 1.4, ease: "easeOut" }}
-            />
-          </div>
-          <span className="text-[12px] font-semibold text-brand-emerald">On track</span>
-        </div>
-      </motion.div>
     </div>
   );
 };

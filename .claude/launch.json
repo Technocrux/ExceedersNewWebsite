@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "frontend",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "C:\\Users\\ElianeMoukheiber\\OneDrive - Exceeders\\Desktop\\eXceeders Website\\ExceedersNewWebsite\\frontend-start.cmd"],
+      "port": 3000
+    },
+    {
+      "name": "backend",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "C:\\Users\\ElianeMoukheiber\\OneDrive - Exceeders\\Desktop\\eXceeders Website\\ExceedersNewWebsite\\backend-start.cmd"],
+      "port": 8000
+    }
+  ]
+}

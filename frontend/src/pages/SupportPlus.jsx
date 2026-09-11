@@ -150,7 +150,7 @@ export default function SupportPlus() {
                 <h3 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
                   One managed agreement. Multiple IT support needs.
                 </h3>
-                <p className="mt-5 text-[15.5px] leading-relaxed text-slate-600">
+                <p className="mt-5 text-[17px] leading-relaxed text-slate-600">
                   Support Plus gives your organization one managed agreement to cover multiple technologies, providers, and service needs through eXceeders — consuming support, enhancements, small projects, subscriptions, licenses, and specialist resources based on actual utilization.
                 </p>
                 <div className="mt-8 grid grid-cols-2 gap-3">

@@ -42,11 +42,53 @@ export const PAGE_META = {
       "CIO Plus is a managed IT department for growing SMEs: strategy, technology selection, provider management and delivery oversight — without hiring a full in-house IT team.",
     robots: "index, follow",
   },
+  cioAdvisory: {
+    path: "/cio-plus/advisory-plus",
+    title: "Advisory+ – Strategic Tech Leadership for Growing SMEs | eXceeders",
+    description:
+      "Advisory+ gives 20–200 employee SMEs a managed IT department: technology strategy, provider management, project delivery, and continuous business alignment.",
+    robots: "index, follow",
+  },
+  cioProductivity: {
+    path: "/cio-plus/productivity-plus",
+    title: "Productivity+ – Digital Workplace Support for Growing SMEs | eXceeders",
+    description:
+      "Productivity+ provides structured end-user support, workplace administration, and productivity optimization for 20–200 employee organizations without an internal IT team.",
+    robots: "index, follow",
+  },
+  cioAI: {
+    path: "/cio-plus/ai-plus",
+    title: "AI+ – Agentic AI Development for Growing SMEs | eXceeders",
+    description:
+      "AI+ identifies the business processes worth automating, then designs and builds dedicated Agentic AI solutions that run them — for 20–200 employee organizations.",
+    robots: "index, follow",
+  },
+  cioAssurance: {
+    path: "/cio-plus/assurance-plus",
+    title: "Assurance+ – Unified Multi-Provider Technology Support | eXceeders",
+    description:
+      "Assurance+ consolidates support across your technology providers into one managed agreement, with pay-as-you-go or prepaid consumption-based pricing.",
+    robots: "index, follow",
+  },
+  talentProfessionals: {
+    path: "/talent-plus/professional-plus",
+    title: "Professionals+ – Hire Vetted IT Professionals Faster | eXceeders",
+    description:
+      "Professionals+ combines specialized IT recruiters, AI-powered matching, and technical screening to help organizations hire qualified IT professionals faster, pay only on success.",
+    robots: "index, follow",
+  },
+  talentSoftware: {
+    path: "/talent-plus/software-plus",
+    title: "Software+ – Vendor-Neutral Business Software Recommendations | eXceeders",
+    description:
+      "Software+ defines what your business actually needs, compares the right software options with AI-powered matching, and helps you choose based on fit, not the strongest sales pitch.",
+    robots: "index, follow",
+  },
   talent: {
     path: "/talent-plus",
-    title: "Talent Plus – Specialized IT Recruitment | eXceeders",
+    title: "Talent Plus – Vetted IT Recruitment, Providers & Software | eXceeders",
     description:
-      "Talent Plus helps companies hire permanent IT, tech sales, presales, and project-management talent with better-matched candidates and success-based placement fees.",
+      "Talent Plus matches your business with the right IT capability — permanent talent, trusted technology providers, and vendor-neutral software recommendations, in one ecosystem.",
     robots: "index, follow",
   },
   support: {
@@ -58,9 +100,9 @@ export const PAGE_META = {
   },
   dev: {
     path: "/dev-plus",
-    title: "Dev Plus – Custom Software and AI Development | eXceeders",
+    title: "Dev Plus – Managed AI-Native Software & Agentic AI Development | eXceeders",
     description:
-      "A fully managed team for custom applications, Agentic AI workflows, and secure internal AI infrastructure — from planning and architecture to development and delivery.",
+      "Dev Plus is a fully managed team that designs, builds, and evolves AI-native business applications, Agentic AI workflows, and secure internal AI infrastructure — from planning to delivery.",
     robots: "index, follow",
   },
   about: {
@@ -70,12 +112,40 @@ export const PAGE_META = {
       "eXceeders is a Gulf technology ecosystem connecting businesses with trusted providers, specialists and delivery teams — one accountable partner across the technology journey.",
     robots: "index, follow",
   },
+  projectHire: {
+    path: "/project-plus/hire-plus",
+    title: "Hire+ – Vetted IT Project Manager Recruitment | eXceeders",
+    description:
+      "Hire+ recruits, assesses, trains, and supports IT Project Managers before and after placement, so they lead successful technology projects from day one.",
+    robots: "index, follow",
+  },
+  projectEnable: {
+    path: "/project-plus/enable-plus",
+    title: "Enable+ – Method 3-Pulse Project Delivery Training | eXceeders",
+    description:
+      "Enable+ gives internal IT Project Management teams the Method 3-Pulse playbook, hands-on training, and optional PlanneXe platform to deliver technology projects consistently.",
+    robots: "index, follow",
+  },
+  projectOperate: {
+    path: "/project-plus/operate-plus",
+    title: "Operate+ – ProjectOps Governance & Reporting Support | eXceeders",
+    description:
+      "Operate+ provides dedicated ProjectOps specialists who handle governance, planning, reporting, and compliance, so your Project Managers can focus on delivery.",
+    robots: "index, follow",
+  },
   project: {
     path: "/project-plus",
-    title: "Project Plus | eXceeders",
+    title: "Project Plus – IT Project Delivery Capability as a Service | eXceeders",
     description:
-      "Project Plus — managed delivery for critical initiatives. Full details will be published soon.",
-    robots: "noindex, follow",
+      "Project Plus combines vetted Project Managers, proven delivery methodology, and dedicated ProjectOps to help organizations consistently deliver successful technology projects.",
+    robots: "index, follow",
+  },
+  resources: {
+    path: "/resources",
+    title: "Resources & Blog | eXceeders",
+    description:
+      "Practical insights on IT strategy, technology hiring, project delivery, and digital transformation from the eXceeders team.",
+    robots: "index, follow",
   },
 };
 
@@ -84,4 +154,4 @@ export const CALENDLY_URL =
   "https://calendly.com/batool-hussein-exceeders/30min?back=1&month=2026-07&date=2026-07-19";
 
 // Sitemap: pages included in indexing.
-export const SITEMAP_PAGES = ["home", "cio", "talent", "support", "dev", "about"];
+export const SITEMAP_PAGES = ["home", "cio", "project", "talent", "support", "dev", "about"];

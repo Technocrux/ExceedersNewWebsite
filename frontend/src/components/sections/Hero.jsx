@@ -22,7 +22,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 rounded-full border border-brand-emerald/25 bg-brand-emerald/5 px-3.5 py-1.5"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-emerald/5 px-3.5 py-1.5"
             >
               <Zap className="w-3.5 h-3.5 text-brand-emerald" />
               <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-brand-emerald">
@@ -43,23 +43,6 @@ export const Hero = () => {
                 <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-brand-emerald to-brand-pine">
                   Digital Transformation
                 </span>
-                <svg
-                  className="absolute -bottom-2 left-0 w-full h-3"
-                  viewBox="0 0 400 12"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <motion.path
-                    d="M2 8 C 100 2, 300 2, 398 8"
-                    stroke="#059669"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
-                    fill="none"
-                  />
-                </svg>
               </span>
             </motion.h1>
 
@@ -89,16 +72,6 @@ export const Hero = () => {
               >
                 Start Your Digital Transformation
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-
-              <a
-                href="https://www.exceeders.com/pages/home"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="hero-marketplace-link"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-[15px] font-semibold text-brand-dark hover:border-brand-emerald hover:text-brand-emerald transition-colors"
-              >
-                Marketplace Site
               </a>
             </motion.div>
 

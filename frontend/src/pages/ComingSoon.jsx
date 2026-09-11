@@ -7,8 +7,8 @@ import SEO from "@/components/SEO";
 import { PAGE_META } from "@/seo/config";
 import { webPageLd } from "@/seo/jsonld";
 
-export default function ComingSoon({ title = "Coming Soon", tagline = "" }) {
-  const meta = PAGE_META.project;
+export default function ComingSoon({ title = "Coming Soon", tagline = "", metaKey = "project" }) {
+  const meta = PAGE_META[metaKey];
   return (
     <div className="min-h-screen bg-white flex flex-col" data-testid="coming-soon-page">
       <SEO
@@ -16,7 +16,7 @@ export default function ComingSoon({ title = "Coming Soon", tagline = "" }) {
         description={meta.description}
         path={meta.path}
         robots={meta.robots}
-        jsonLd={webPageLd({ key: "project", name: meta.title, description: meta.description })}
+        jsonLd={webPageLd({ key: metaKey, name: meta.title, description: meta.description })}
       />
       <Header />
       <main className="flex-1 flex items-center justify-center py-32 relative overflow-hidden">

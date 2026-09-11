@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
  * - Temporarily disables smooth scroll so navigation lands at the exact top instantly.
  */
 export default function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   // Disable browser's automatic scroll restoration once on mount.
   useEffect(() => {
@@ -20,6 +20,20 @@ export default function ScrollToTop() {
     const html = document.documentElement;
     const prev = html.style.scrollBehavior;
     html.style.scrollBehavior = "auto";
+
+    if (hash) {
+      // Navigating to an in-page anchor (e.g. /#ways-we-help) — scroll it
+      // into view instead of forcing the page back to the top.
+      const raf = window.requestAnimationFrame(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ block: "start" });
+        html.style.scrollBehavior = prev || "";
+      });
+      return () => {
+        window.cancelAnimationFrame(raf);
+        html.style.scrollBehavior = prev || "";
+      };
+    }
 
     // Immediate scroll
     window.scrollTo(0, 0);
@@ -43,7 +57,7 @@ export default function ScrollToTop() {
       if (cleanup.raf2) window.cancelAnimationFrame(cleanup.raf2);
       html.style.scrollBehavior = prev || "";
     };
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 }

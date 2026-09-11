@@ -127,7 +127,7 @@ export default function AboutUs() {
                   </p>
                 </div>
               </div>
-              <div className="lg:col-span-7 space-y-4 text-[15.5px] leading-relaxed text-slate-700">
+              <div className="lg:col-span-7 space-y-4 text-[17px] leading-relaxed text-slate-700">
                 <p>
                   Technology initiatives often involve multiple providers, consultants, recruiters, developers, and support teams. Managing them separately can create delays, unclear responsibilities, and unnecessary risk.
                 </p>

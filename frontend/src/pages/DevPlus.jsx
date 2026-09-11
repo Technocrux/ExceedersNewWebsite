@@ -9,105 +9,102 @@ import {
   Section,
   Container,
   SectionHeading,
+  FeatureCard,
   FAQItem,
   ServiceFinalCTA,
   Eyebrow,
+  CountUpNumber,
+  DifferenceMeansSection,
 } from "@/components/service/ServicePrimitives";
 import { motion } from "framer-motion";
 import {
-  Code2, Bot, Server, Users, ArrowRight, CheckCircle2, Lock,
+  Award, FolderCheck, Building2, Palette, Bot, Zap, Users, ClipboardList,
+  RefreshCcw, Receipt, Clock, UserCog, ArrowRight, ShieldCheck,
 } from "lucide-react";
 
-const CHALLENGES = [
-  "High recruitment and development costs",
-  "Difficulty finding the right technical expertise",
-  "Unclear requirements and changing scope",
-  "Poor alignment between business and dev teams",
-  "AI projects that never move beyond experimentation",
-  "Overdependence on separate suppliers and freelancers",
+const PROOF = [
+  { Icon: Award, to: 10, suffix: "+", label: "Years of Enterprise Software Delivery Experience", accent: "#059669", iconBg: "#C6E5DE" },
+  { Icon: FolderCheck, to: 1000, suffix: "+", label: "Business Applications Delivered", accent: "#43669E", iconBg: "#C7D3EC" },
+  { Icon: Building2, to: 900, suffix: "+", label: "Gulf Customers", accent: "#07404B", iconBg: "#D7EBC7" },
 ];
 
-const CUSTOM_APPS = [
-  "Internal business systems",
-  "Customer & supplier portals",
-  "Mobile applications",
-  "Workflow automation platforms",
-  "Digital products",
-  "Legacy system modernization",
-];
-
-const AGENT_EXAMPLES = [
-  "Reviewing and organizing documents",
-  "Managing internal requests",
-  "Supporting customer service teams",
-  "Preparing reports and recommendations",
-  "Retrieving info from multiple systems",
-  "Automating multi-step business processes",
-];
-
-const AI_INFRA = [
-  "Private AI architecture",
-  "Internal knowledge assistants",
-  "Secure access to business data",
-  "Role-based permissions",
-  "Governance and usage controls",
-  "Monitoring and performance management",
-];
-
-const TEAM = [
-  "Product Owner Proxy", "Project Manager / Scrum Master", "Solution Architect",
-  "AI Engineers", "Backend Developers", "Frontend Developers",
-  "Mobile Developers", "UX / UI Specialists", "DevOps Engineers",
-  "QA Engineers", "Security & Performance",
-];
-
-const PROCESS = [
-  { n: 1, title: "Understand", desc: "We map your business problem, users, systems, and expected outcomes." },
-  { n: 2, title: "Define", desc: "We shape the solution, confirm scope, and build a clear roadmap." },
-  { n: 3, title: "Build", desc: "Our managed team designs, develops, integrates, and tests through structured phases." },
-  { n: 4, title: "Launch & Improve", desc: "We support controlled launch, measure performance, and improve continuously." },
-];
-
-const PACKAGES = [
+const WHAT_IT_MEANS = [
   {
-    name: "Dev Plus Discovery",
-    tagline: "For businesses that need to define what to build before development begins.",
-    features: ["Business & technical discovery", "Requirements definition", "Solution concept & architecture", "MVP scope & roadmap", "Team structure & estimates"],
-    model: "Fixed assessment fee",
-    cta: "Start with Discovery",
+    title: "Faster delivery",
+    Icon: Zap,
   },
   {
-    name: "Dev Plus Build",
-    tagline: "For businesses ready to develop a custom application or Agentic AI solution.",
-    features: ["Managed development team", "Product & project management", "Solution architecture", "UX / UI design", "Software or AI development", "DevOps & QA", "Launch preparation"],
-    model: "Project-based or monthly managed team",
-    cta: "Discuss Your Project",
-    highlight: true,
+    title: "Lower project risk",
+    Icon: ShieldCheck,
   },
   {
-    name: "Dev Plus Scale",
-    tagline: "For businesses with an existing product that need ongoing development.",
-    features: ["Dedicated or flexible capacity", "New features & improvements", "AI workflow expansion", "System integrations", "Ongoing QA & security", "Monthly progress reporting"],
-    model: "Monthly managed team",
-    cta: "Build Your Team",
+    title: "Software your teams adopt",
+    Icon: Bot,
   },
 ];
 
-const COMPARISON = [
-  ["You manage the developers", "eXceeders manages the complete team"],
-  ["Limited project oversight", "Structured project and delivery management"],
-  ["Access mainly to developers", "Product, AI, UX, DevOps, QA, and security expertise"],
-  ["You manage the infrastructure", "Development environments are managed for you"],
-  ["Responsibility is fragmented", "One accountable delivery partner"],
-  ["Quality depends on individuals", "Structured quality assurance and review"],
+const DISCIPLINES = [
+  {
+    name: "Design Systems and UX",
+    tagline: "Create Experiences That Work Together.",
+    desc: "Build consistent, intuitive, and scalable experiences through reusable design standards.",
+    icon: Palette,
+  },
+  {
+    name: "AI-Native Solution Architecture",
+    tagline: "Build Intelligence In, Not On.",
+    desc: "Design applications where AI is embedded into the core business process from day one — intelligent assistants, workflow automation, AI agents, and predictive capabilities built into the experience, not layered on afterward.",
+    icon: Bot,
+  },
+  {
+    name: "AI-Assisted Agile Delivery",
+    tagline: "Move Faster Without Losing Control.",
+    desc: "Combine AI-assisted development, Agile delivery, and modern engineering to accelerate delivery while protecting quality and security.",
+    icon: Zap,
+  },
+  {
+    name: "Specialist Delivery Teams",
+    tagline: "Put the Right Expert on Every Part.",
+    desc: "Bring together specialists across UX, architecture, development, AI, integrations, QA, DevOps, and security.",
+    icon: Users,
+  },
+  {
+    name: "ProjectOps Governance",
+    tagline: "Keep Every Part of Delivery Aligned.",
+    desc: "Manage sprints, providers, quality, risks, dependencies, and reporting through one structured delivery model.",
+    icon: ClipboardList,
+  },
+  {
+    name: "Continuous Improvement",
+    tagline: "Keep Creating Value After Launch.",
+    desc: "Support releases, enhancements, user feedback, and evolving business needs.",
+    icon: RefreshCcw,
+  },
+];
+
+const ENGAGEMENT_MODELS = [
+  { label: "Fixed Price", icon: Receipt },
+  { label: "Time & Material", icon: Clock },
+  { label: "Dedicated Delivery Team", icon: UserCog },
 ];
 
 const FAQS = [
-  { q: "What types of applications can Dev Plus build?", a: "Dev Plus can build internal business systems, portals, mobile applications, workflow solutions, management platforms, integrations, digital products, and other custom software based on your requirements." },
-  { q: "What is an Agentic AI workflow?", a: "An Agentic AI workflow uses AI agents to complete tasks, interact with systems, retrieve information, and coordinate multiple steps within a business process. Unlike a basic chatbot, an AI agent may take actions and support the execution of defined workflows." },
-  { q: "Can you build a private AI environment?", a: "Yes. Dev Plus can help design secure internal AI infrastructure based on your data, governance, security, access, and integration requirements." },
-  { q: "Who manages the development team?", a: "eXceeders manages the team, project structure, delivery process, progress tracking, and technical coordination. Your team remains involved in business decisions and approvals without needing to manage technical resources day to day." },
-  { q: "How is pricing calculated?", a: "Pricing depends on the scope, team structure, technical complexity, expected timeline, and engagement model. After an initial assessment, we provide a recommended setup and a clear commercial proposal." },
+  {
+    q: "Can Dev Plus build AI-native business applications?",
+    a: "Yes. We design and build business applications where AI is embedded into the core solution, enabling intelligent automation, AI assistants, decision support, predictive insights, and AI-powered business processes.",
+  },
+  {
+    q: "Do you develop the software yourselves?",
+    a: "Dev Plus manages the complete delivery while assembling specialist software companies best suited for each discipline, ensuring every part of your solution is delivered by experts.",
+  },
+  {
+    q: "Why use multiple specialist providers instead of one software company?",
+    a: "Different providers excel in different areas. By selecting specialists for AI engineering, UX, development, integrations, DevOps, and quality assurance, we build a stronger and more capable delivery team.",
+  },
+  {
+    q: "How do you ensure the solution meets our business needs?",
+    a: "Every project starts with our Service Design methodology, where we define business processes, service journeys, personas, user stories, AI opportunities, and acceptance criteria before development begins. This ensures the delivery team builds the right AI-native business application from day one.",
+  },
 ];
 
 export default function DevPlus() {
@@ -122,8 +119,8 @@ export default function DevPlus() {
         jsonLd={[
           serviceLd({
             key: "dev",
-            name: "Dev Plus — Custom Software and AI Development",
-            serviceType: "Software & AI Development",
+            name: "Dev Plus — Managed AI-Native Software & Agentic AI Development",
+            serviceType: "Managed AI-Native Software Development",
             description: meta.description,
           }),
           faqPageLd(FAQS),
@@ -132,271 +129,179 @@ export default function DevPlus() {
       <Header />
       <main>
         <ServiceHero
-          eyebrow="Dev Plus | Managed Software and AI Development"
-          title="Build the software and AI capabilities your business needs"
-          subtitle="A fully managed team to build custom applications, Agentic AI workflows, and secure internal AI infrastructure — from planning and architecture to development, testing, and delivery."
-          cta="Discuss Your Project"
+          eyebrow="DEV PLUS · Managed AI-Native Software & Agentic AI Development"
+          title={
+            <>
+              Built Right.
+              <br />
+              Built Fast.
+              <br />
+              Built AI-Native.
+            </>
+          }
+          subtitle="A fully managed team that designs, builds, and evolves AI-native business applications, Agentic AI workflows, and secure internal AI infrastructure — from planning and architecture to development, testing, and delivery."
+          cta="Book a Free Assessment"
           ctaHref={CALENDLY_URL}
           testId="dev-hero"
-          visualSlot={
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { icon: Code2, label: "Custom Apps" },
-                { icon: Bot, label: "Agentic AI" },
-                { icon: Server, label: "AI Infrastructure" },
-                { icon: Users, label: "Managed Team" },
-              ].map((c, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + i * 0.08 }}
-                  className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-5"
-                >
-                  <div className="w-11 h-11 rounded-xl bg-brand-emerald/20 flex items-center justify-center">
-                    <c.icon className="w-5 h-5 text-brand-sea" strokeWidth={1.8} />
-                  </div>
-                  <p className="mt-4 text-[14px] font-semibold text-white">{c.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          }
         />
 
-        {/* Challenge — compact */}
+        {/* Proof & Value */}
         <Section className="bg-white">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-              <div className="lg:col-span-5">
-                <Eyebrow>The Challenge</Eyebrow>
-                <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
-                  Building the right technology takes more than hiring developers.
-                </h2>
-                <p className="mt-5 text-[15.5px] leading-relaxed text-slate-600">
-                  Many software and AI initiatives become expensive, delayed, or disconnected from actual business goals. A development team alone isn&apos;t enough — successful delivery also needs product direction, architecture, DevOps, testing, security, and ongoing oversight.
-                </p>
-              </div>
-              <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-3">
-                {CHALLENGES.map((c, i) => (
-                  <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                    <div className="w-7 h-7 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-[12px] shrink-0">
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
-                    <p className="text-[14px] text-slate-700 leading-snug">{c}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </Section>
-
-        {/* What Dev Plus Delivers */}
-        <Section className="bg-[#F7F9FA]">
-          <Container>
-            <SectionHeading
-              eyebrow="What Dev Plus Delivers"
-              title="Everything you need to move from concept to working technology"
-            />
-
-            <div className="mt-14 grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Custom Applications */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5 }}
-                className="rounded-3xl bg-white border border-slate-200 p-8"
-                data-testid="dev-delivers-custom"
-              >
-                <div className="w-12 h-12 rounded-xl bg-brand-emerald/10 flex items-center justify-center">
-                  <Code2 className="w-6 h-6 text-brand-emerald" strokeWidth={1.75} />
-                </div>
-                <h3 className="mt-6 font-display text-[22px] font-bold text-brand-dark">Custom Applications</h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-                  Software designed around your workflows, users, and business objectives.
-                </p>
-                <ul className="mt-5 space-y-2">
-                  {CUSTOM_APPS.map((it, k) => (
-                    <li key={k} className="flex items-start gap-2 text-[13.5px] text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 mt-0.5 text-brand-emerald shrink-0" /> {it}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* Agentic AI */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: 0.08 }}
-                className="rounded-3xl bg-gradient-to-br from-[#07404B] to-[#0D1F2D] text-white border border-transparent shadow-2xl shadow-emerald-900/10 p-8 lg:-translate-y-3"
-                data-testid="dev-delivers-agentic"
-              >
-                <div className="w-12 h-12 rounded-xl bg-brand-emerald/20 flex items-center justify-center">
-                  <Bot className="w-6 h-6 text-brand-sea" strokeWidth={1.75} />
-                </div>
-                <h3 className="mt-6 font-display text-[22px] font-bold">Agentic AI Workflows</h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-slate-300">
-                  AI agents that complete tasks, coordinate steps, and support business operations.
-                </p>
-                <ul className="mt-5 space-y-2">
-                  {AGENT_EXAMPLES.map((it, k) => (
-                    <li key={k} className="flex items-start gap-2 text-[13.5px] text-slate-200">
-                      <CheckCircle2 className="w-4 h-4 mt-0.5 text-brand-sea shrink-0" /> {it}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* AI Infrastructure */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: 0.16 }}
-                className="rounded-3xl bg-white border border-slate-200 p-8"
-                data-testid="dev-delivers-infrastructure"
-              >
-                <div className="w-12 h-12 rounded-xl bg-brand-emerald/10 flex items-center justify-center">
-                  <Lock className="w-6 h-6 text-brand-emerald" strokeWidth={1.75} />
-                </div>
-                <h3 className="mt-6 font-display text-[22px] font-bold text-brand-dark">Secure Internal AI Infrastructure</h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-                  A controlled environment for AI while protecting sensitive information.
-                </p>
-                <ul className="mt-5 space-y-2">
-                  {AI_INFRA.map((it, k) => (
-                    <li key={k} className="flex items-start gap-2 text-[13.5px] text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 mt-0.5 text-brand-emerald shrink-0" /> {it}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+            <div className="max-w-3xl">
+              <h2 className="font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                The Track Record Behind Every Build.
+              </h2>
+              <p className="mt-5 text-[17px] leading-relaxed text-slate-600">
+                Dev Plus pairs enterprise software delivery experience with a growing ecosystem of vetted specialist providers across UX, AI engineering, architecture, and development.
+              </p>
             </div>
 
-            {/* Team — compact chip grid */}
-            <div className="mt-14 rounded-3xl bg-white border border-slate-200 p-6 md:p-8">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <Eyebrow>Your Dev Plus Team</Eyebrow>
-                  <h3 className="mt-2 font-display text-xl md:text-2xl font-bold text-brand-dark">A fully managed development team</h3>
-                </div>
-                <p className="text-[13px] text-slate-500 max-w-md">Structure adapts to your project — right expertise, no unnecessary overhead.</p>
-              </div>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {TEAM.map((t) => (
-                  <span key={t} className="inline-flex items-center gap-2 rounded-full bg-brand-emerald/5 border border-brand-emerald/15 px-3.5 py-1.5 text-[13px] font-medium text-brand-pine">
-                    <Users className="w-3.5 h-3.5 text-brand-emerald" strokeWidth={1.75} />
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </Section>
-
-        {/* Process */}
-        <Section className="bg-white">
-          <Container>
-            <SectionHeading eyebrow="Our Process" title="From business need to working solution" />
-            <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-              {PROCESS.map((p) => (
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {PROOF.map((p, i) => (
                 <motion.div
-                  key={p.n}
+                  key={p.label}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.5 }}
-                  className="rounded-2xl bg-slate-50/70 border border-slate-100 p-7"
-                >
-                  <div className="w-11 h-11 rounded-xl bg-brand-emerald text-white flex items-center justify-center font-display font-bold">
-                    {p.n}
-                  </div>
-                  <h3 className="mt-5 font-display text-[18px] font-bold text-brand-dark">{p.title}</h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-slate-600">{p.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        {/* Packages */}
-        <Section className="bg-[#F7F9FA]" id="pricing">
-          <Container>
-            <SectionHeading
-              eyebrow="Choose the Right Starting Point"
-              title="Flexible Dev Plus packages based on what you need to achieve"
-            />
-            <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
-              {PACKAGES.map((p, i) => (
-                <motion.div
-                  key={p.name}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className={`relative rounded-3xl border p-8 flex flex-col ${
-                    p.highlight
-                      ? "bg-gradient-to-br from-[#07404B] to-[#0D1F2D] text-white border-transparent shadow-2xl shadow-emerald-900/20 lg:-translate-y-2"
-                      : "bg-white text-brand-dark border-slate-200"
-                  }`}
-                  data-testid={`dev-package-${i}`}
+                  whileHover={{ y: -4 }}
+                  data-testid={`dev-proof-stat-${i + 1}`}
+                  className="rounded-2xl bg-gradient-to-br from-brand-pistachio/40 to-brand-sea/20 border border-brand-emerald/10 p-6"
                 >
-                  {p.highlight && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-emerald text-white text-[11px] font-semibold uppercase tracking-[0.14em] px-3 py-1 rounded-full">
-                      Most Popular
-                    </span>
-                  )}
-                  <h3 className="font-display text-2xl font-bold">{p.name}</h3>
-                  <p className={`mt-3 text-[14px] leading-relaxed ${p.highlight ? "text-slate-300" : "text-slate-600"}`}>{p.tagline}</p>
-                  <ul className="mt-6 space-y-2.5 flex-1">
-                    {p.features.map((f, k) => (
-                      <li key={k} className="flex items-start gap-2 text-[14px]">
-                        <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${p.highlight ? "text-brand-sea" : "text-brand-emerald"}`} />
-                        <span className={p.highlight ? "text-slate-200" : "text-slate-700"}>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className={`mt-6 pt-5 border-t ${p.highlight ? "border-white/10" : "border-slate-200"}`}>
-                    <p className={`text-[11px] uppercase tracking-[0.14em] font-semibold ${p.highlight ? "text-brand-sea" : "text-slate-500"}`}>Pricing model</p>
-                    <p className={`mt-1 text-[13.5px] font-semibold ${p.highlight ? "text-white" : "text-brand-dark"}`}>{p.model}</p>
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center"
+                    style={{ backgroundColor: p.iconBg }}
+                  >
+                    <p.Icon className="w-5 h-5" style={{ color: p.accent }} strokeWidth={1.9} />
                   </div>
+                  <div className="mt-5 font-display text-3xl md:text-4xl font-extrabold text-brand-dark tabular-nums">
+                    <CountUpNumber to={p.to} />
+                    {p.suffix}
+                  </div>
+                  <p className="mt-1.5 text-[13.5px] font-medium text-slate-700 leading-snug">{p.label}</p>
                 </motion.div>
               ))}
             </div>
           </Container>
         </Section>
 
-        {/* Comparison — compact */}
-        <Section className="bg-white">
+        {/* The Challenge */}
+        <Section className="bg-[#F7F9FA]">
+          <Container>
+            <div className="max-w-3xl">
+              <Eyebrow>The Challenge</Eyebrow>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                Most Business Applications Fail Before Launch.
+              </h2>
+              <p className="mt-6 text-[17px] leading-relaxed text-slate-600">
+                Organizations often focus on technology and development before designing the right intelligent business solution and assembling the right team around it.
+              </p>
+            </div>
+          </Container>
+        </Section>
+
+        {/* What Dev Plus Provides */}
+        <Section className="bg-white" id="capabilities">
           <Container>
             <SectionHeading
-              eyebrow="More Than Outsourcing"
-              title="We manage delivery, not just resources"
-              subtitle="Traditional outsourcing gives you developers and leaves you to manage the project. Dev Plus gives you a managed development capability."
+              eyebrow="What Dev Plus Provides"
+              title={
+                <>
+                  Six Disciplines.
+                  <br />
+                  One Accountable Delivery.
+                </>
+              }
             />
-            <div className="mt-12 rounded-3xl overflow-hidden border border-slate-200">
-              <div className="grid grid-cols-2 divide-x divide-slate-200 bg-slate-50/70">
-                <div className="p-4 md:p-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Traditional Outsourcing</p>
-                </div>
-                <div className="p-4 md:p-5 bg-brand-emerald/5">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-emerald">Dev Plus</p>
-                </div>
-              </div>
-              {COMPARISON.map(([a, b], i) => (
-                <div key={i} className={`grid grid-cols-2 divide-x divide-slate-200 ${i % 2 ? "bg-slate-50/40" : "bg-white"}`}>
-                  <div className="p-4 md:p-5 text-[14px] text-slate-600">{a}</div>
-                  <div className="p-4 md:p-5 text-[14px] font-medium text-brand-dark bg-brand-emerald/[0.03]">{b}</div>
-                </div>
+            <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {DISCIPLINES.map((d) => (
+                <FeatureCard key={d.name} icon={d.icon} testId={`dev-discipline-${d.name.toLowerCase().replace(/\s+/g, "-")}`}>
+                  <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-emerald">
+                    {d.name}
+                  </p>
+                  <h3 className="mt-2 font-display text-xl font-bold text-brand-dark tracking-tight leading-tight">
+                    {d.tagline}
+                  </h3>
+                  <p className="mt-3 text-[14.5px] leading-relaxed text-slate-600">
+                    {d.desc}
+                  </p>
+                </FeatureCard>
               ))}
             </div>
           </Container>
         </Section>
+
+        {/* Why We Are Different / What This Means For You */}
+        <DifferenceMeansSection
+          testId="dev-difference"
+          eyebrow="The Dev Plus Difference"
+          title={
+            <>
+              Launch is the Milestone.
+              <br />
+              Value is Our Destination.
+            </>
+          }
+          subtitle="Most software companies bring one team and stretch it across every discipline — with AI often bolted on as an afterthought. We assemble the right specialists for each discipline, design AI into the solution from day one, govern the entire engagement through ProjectOps, and stay the single accountable partner — from discovery to adoption."
+          meansItems={WHAT_IT_MEANS}
+        />
+
+        {/* Engagement Models */}
+        <Section className="bg-white" id="pricing">
+          <Container>
+            <div className="max-w-2xl mx-auto text-center">
+              <Eyebrow>Engagement Models</Eyebrow>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                Engage the Way That Works for You.
+              </h2>
+              <p className="mt-4 text-[17px] leading-relaxed text-slate-600">
+                We start with your business, not the build. Then we assemble the right specialists, including AI engineers where your solution calls for them, and stay accountable, start to finish, through the model that fits how you want to work with us.
+              </p>
+            </div>
+
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              {ENGAGEMENT_MODELS.map((m) => (
+                <div
+                  key={m.label}
+                  data-testid={`dev-engagement-model-${m.label.toLowerCase().replace(/\s+/g, "-").replace("&", "and")}`}
+                  className="inline-flex items-center gap-2.5 rounded-full bg-[#F7F9FA] border border-slate-200/70 px-5 py-3"
+                >
+                  <m.icon className="w-4.5 h-4.5 text-brand-emerald" />
+                  <span className="text-[14.5px] font-semibold text-brand-dark">{m.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-8 max-w-2xl mx-auto text-center text-[13.5px] text-slate-500">
+              Commercial models are tailored to your project scope, complexity, AI requirements, and preferred delivery approach.
+            </p>
+
+            <div className="mt-8 flex justify-center">
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="dev-engagement-cta"
+                className="group inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 transition-all"
+              >
+                Book A Free Assessment
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </Container>
+        </Section>
+
+        <ServiceFinalCTA
+          eyebrow="Ready when you are"
+          title="Turn Your Business Vision into Reality"
+          subtitle="Tell us what you want to build, automate, or make intelligent. We'll help you define the right AI-native solution and manage the journey from concept to launch."
+          cta="Book a Free Assessment"
+          ctaHref={CALENDLY_URL}
+        />
 
         {/* FAQ */}
-        <Section className="bg-[#F7F9FA]" id="faq">
+        <Section className="bg-white" id="faq">
           <Container>
             <div className="max-w-3xl mx-auto">
               <SectionHeading align="center" eyebrow="FAQ" title="Common questions about Dev Plus" />
@@ -408,12 +313,6 @@ export default function DevPlus() {
             </div>
           </Container>
         </Section>
-
-        <ServiceFinalCTA
-          eyebrow="Turn ideas into working software"
-          title="Have a software or AI idea you need to bring to life?"
-          subtitle="Tell us what you want to build, improve, or automate. We'll help you define the right solution and manage the journey from concept to launch."
-        />
       </main>
       <Footer />
     </ServicePageShell>

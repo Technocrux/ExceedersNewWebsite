@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Youtube, Mail, Phone, ArrowUpRight } from "lucide-react";
+import { Linkedin, Youtube, Mail, ArrowUpRight } from "lucide-react";
 
 const LOGO_URL = "/assets/brand/logo-dark.png";
 
@@ -107,10 +107,6 @@ export const Footer = () => {
                 >
                   info@exceeders.com
                 </a>
-              </li>
-              <li className="text-[14px] text-slate-400 flex items-center gap-2">
-                <Phone className="w-4 h-4 text-brand-sea" />
-                <span data-testid="footer-contact-phone" className="text-slate-500">Phone: TBC</span>
               </li>
             </FooterCol>
 

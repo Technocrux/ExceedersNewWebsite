@@ -59,6 +59,25 @@ export const serviceLd = ({ key, name, description, serviceType }) => ({
 });
 
 /**
+ * Blog post structured data.
+ * @param path Full route path of the post (e.g. "/resources/blog/my-post")
+ * @param title Post title
+ * @param description Post excerpt/summary
+ * @param datePublished ISO date string (e.g. "2026-09-11")
+ */
+export const blogPostingLd = ({ path, title, description, datePublished }) => ({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished,
+  url: absUrl(path),
+  author: { "@type": "Organization", name: ORG.name, url: ORG.url },
+  publisher: { "@type": "Organization", name: ORG.name, url: ORG.url, logo: ORG.logo },
+  mainEntityOfPage: { "@type": "WebPage", "@id": absUrl(path) },
+});
+
+/**
  * FAQ structured data. Only pass this on pages with visible FAQ Q/A pairs.
  * @param items Array of {q, a}
  */
