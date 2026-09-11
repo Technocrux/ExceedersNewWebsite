@@ -269,7 +269,7 @@ export default function ProjectPlus() {
                       transition={{ duration: 0.4, delay: i * 0.06 }}
                       className="flex items-start gap-3.5 pb-5 border-b border-slate-200/70 last:border-b-0 last:pb-0"
                     >
-                      <div className="w-7 h-7 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-[12px] shrink-0">
+                      <div className="w-7 h-7 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold text-[12px] shrink-0">
                         {String(i + 1).padStart(2, "0")}
                       </div>
                       <p className="text-[15px] leading-relaxed text-slate-700 pt-0.5">{c}</p>
@@ -311,7 +311,7 @@ export default function ProjectPlus() {
                   <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                     How It Starts
                   </p>
-                  <div className="mt-4 grid grid-cols-3 gap-5">
+                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-5">
                     {HOW_IT_STARTS.map((s, i) => (
                       <motion.div
                         key={s.title}

@@ -137,7 +137,7 @@ export default function SupportPlus() {
                 <ul className="mt-8 space-y-4">
                   {PAIN.map((p, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-[12px] shrink-0">
+                      <div className="w-7 h-7 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold text-[12px] shrink-0">
                         {String(i + 1).padStart(2, "0")}
                       </div>
                       <p className="text-[15px] leading-relaxed text-slate-700">{p}</p>
