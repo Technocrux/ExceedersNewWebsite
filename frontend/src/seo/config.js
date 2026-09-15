@@ -77,6 +77,13 @@ export const PAGE_META = {
       "Professionals+ combines specialized IT recruiters, AI-powered matching, and technical screening to help organizations hire qualified IT professionals faster, pay only on success.",
     robots: "index, follow",
   },
+  talentProvider: {
+    path: "/talent-plus/provider-plus",
+    title: "IT Provider+ – Pre-Screened Technology Providers | eXceeders",
+    description:
+      "IT Provider+ defines your requirements, sources qualified providers from a vetted ecosystem, and delivers a technically evaluated shortlist, free of charge, with optional ProjectOps governance.",
+    robots: "index, follow",
+  },
   talentSoftware: {
     path: "/talent-plus/software-plus",
     title: "Software+ – Vendor-Neutral Business Software Recommendations | eXceeders",

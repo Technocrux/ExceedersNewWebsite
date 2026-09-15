@@ -18,7 +18,8 @@ import {
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Compass, Users, Bot, ShieldCheck, ArrowRight, TrendingDown, FolderCheck, Building2, CheckCircle2, Zap, TrendingUp,
+  Compass, Users, Bot, ShieldCheck, ArrowRight, TrendingDown, FolderCheck, Building2, CheckCircle2, Zap, Layers,
+  Star, Menu, Plus, Search, Sparkles, Newspaper, ShoppingBag, ClipboardList, Calendar, User,
 } from "lucide-react";
 
 const PROOF = [
@@ -29,7 +30,7 @@ const PROOF = [
 
 const WHAT_IT_MEANS = [
   {
-    title: "Higher Operational Efficiency",
+    title: "Higher operational efficiency",
     Icon: Zap,
   },
   {
@@ -37,10 +38,22 @@ const WHAT_IT_MEANS = [
     Icon: ShieldCheck,
   },
   {
-    title: "Faster business growth",
-    Icon: TrendingUp,
+    title: "Simpler technology management",
+    Icon: Layers,
   },
 ];
+
+const PLATFORM_REQUESTS = [
+  { category: "Employee Contract Signing", title: "Employee Contract Signing", by: "Nadia Karim", date: "8 Sep 2026", ref: "NUM21698", status: "Pending", accent: "#17A67B" },
+  { category: "Employee Services", title: "Employee Letters Inquiry", by: "Omar Haddad", date: "10 Sep 2026", ref: "NUM21697", status: "Approved", accent: "#17A67B" },
+  { category: "Employee Services", title: "Insurance Inquiry", by: "Sara Nassif", date: "12 Sep 2026", ref: "NUM21701", status: "In review", accent: "#4EBC96" },
+];
+
+const STATUS_STYLES = {
+  Pending: { bg: "#FFF5E6", text: "#8A5A10", dot: "#D9932B" },
+  Approved: { bg: "#E8F7F1", text: "#0F7F5E", dot: "#17A67B" },
+  "In review": { bg: "#F1F5F4", text: "#3F5A55", dot: "#4EBC96" },
+};
 
 const CHALLENGES = [
   "Choosing the right technology",
@@ -51,9 +64,9 @@ const CHALLENGES = [
 ];
 
 const SOLUTION_HIGHLIGHTS = [
-  "No hiring, onboarding, or managing an internal team",
+  "No hiring, onboarding, or managing an internal IT team",
   "No overhead of running an IT department yourself",
-  "No juggling fragmented providers and contracts",
+  "No juggling multiple providers and contracts",
 ];
 
 const CAPABILITIES = [
@@ -196,6 +209,7 @@ export default function CIOPlus() {
           cta="Book a Free Consultation"
           ctaHref={CALENDLY_URL}
           testId="cio-hero"
+          parallax
         />
 
         {/* Proof & Main Value */}
@@ -206,7 +220,7 @@ export default function CIOPlus() {
                 Enterprise Power. Built for You.
               </h2>
               <p className="mt-5 text-[17px] leading-relaxed text-slate-600">
-                More than a decade of Gulf enterprise and government IT experience, now delivered to growing businesses without the cost of building a full internal IT department.
+                More than a decade of Gulf enterprise and government IT experience, now delivered to growing businesses without the cost of building an internal IT department.
               </p>
             </div>
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -244,11 +258,45 @@ export default function CIOPlus() {
                 </motion.div>
               ))}
             </div>
+
+            {/* What This Means For You */}
+            <div className="relative mt-14 rounded-3xl bg-gradient-to-br from-[#07404B] to-[#0D1F2D] p-8 md:p-10 overflow-hidden">
+              <div className="absolute -top-16 -right-10 w-64 h-64 rounded-full bg-brand-emerald/25 blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-24 -left-10 w-56 h-56 rounded-full bg-brand-sea/10 blur-3xl pointer-events-none" />
+              <div className="relative flex items-center gap-2.5">
+                <span className="w-7 h-7 rounded-lg bg-brand-emerald/15 border border-brand-emerald/25 flex items-center justify-center">
+                  <Star className="w-3.5 h-3.5 text-brand-sea" fill="currentColor" strokeWidth={0} />
+                </span>
+                <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-brand-sea">
+                  What This Means For You
+                </p>
+              </div>
+              <div className="relative mt-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {WHAT_IT_MEANS.map((item, i) => (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                    whileHover={{ y: -4 }}
+                    className="relative overflow-hidden rounded-2xl bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-brand-emerald/30 transition-colors"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-brand-emerald/15 border border-brand-emerald/25 flex items-center justify-center">
+                      <item.Icon className="w-5 h-5 text-brand-sea" strokeWidth={1.9} />
+                    </div>
+                    <p className="mt-4 font-display text-[16.5px] font-bold text-white leading-snug">
+                      {item.title}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </Container>
         </Section>
 
         {/* The Challenge / The Solution */}
-        <Section className="bg-[#F7F9FA]">
+        <Section className="bg-[#F7F9FA]" texture>
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-12">
               {/* The Challenge */}
@@ -258,7 +306,7 @@ export default function CIOPlus() {
                   Technology Gets Harder To Manage As You Grow
                 </h2>
                 <p className="mt-5 text-[17px] leading-relaxed text-slate-600">
-                  As your business grows, you rely more on technology, but managing it takes time, expertise, and the right support.
+                  Are you facing any of these challenges?
                 </p>
                 <ul className="mt-8 space-y-5">
                   {CHALLENGES.map((c, i) => (
@@ -270,9 +318,15 @@ export default function CIOPlus() {
                       transition={{ duration: 0.4, delay: i * 0.06 }}
                       className="flex items-start gap-3.5 pb-5 border-b border-slate-200/70 last:border-b-0 last:pb-0"
                     >
-                      <div className="w-7 h-7 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold text-[12px] shrink-0">
+                      <motion.div
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ type: "spring", stiffness: 400, damping: 20, delay: i * 0.06 + 0.1 }}
+                        className="w-7 h-7 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold text-[12px] shrink-0"
+                      >
                         {String(i + 1).padStart(2, "0")}
-                      </div>
+                      </motion.div>
                       <p className="text-[15px] leading-relaxed text-slate-700 pt-0.5">{c}</p>
                     </motion.li>
                   ))}
@@ -288,7 +342,7 @@ export default function CIOPlus() {
                   Fully Managed.
                 </h2>
                 <p className="mt-5 text-[17px] leading-relaxed text-slate-600">
-                  CIO+ gives you a fully managed IT department that plans, selects, manages, and improves your technology. Just like an internal team, but leaner, smarter, and ready from day one.
+                  CIO+ gives you a fully managed IT department that plans, selects, manages, and improves your technology.
                 </p>
 
                 <motion.div
@@ -323,9 +377,15 @@ export default function CIOPlus() {
                         className="border-t-2 border-brand-emerald pt-3"
                       >
                         <p className="flex items-baseline gap-1.5">
-                          <span className="text-[11px] font-bold text-brand-emerald">
+                          <motion.span
+                            initial={{ scale: 0.5, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ type: "spring", stiffness: 400, damping: 20, delay: i * 0.08 + 0.15 }}
+                            className="inline-block text-[11px] font-bold text-brand-emerald"
+                          >
                             {String(i + 1).padStart(2, "0")}
-                          </span>
+                          </motion.span>
                           <span className="font-display text-[14.5px] font-bold text-brand-dark">
                             {s.title}
                           </span>
@@ -343,7 +403,7 @@ export default function CIOPlus() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="cio-solution-cta"
-                  className="group mt-8 inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 transition-all"
+                  className="group mt-8 inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 hover:scale-[1.03] transition-all"
                 >
                   Book a Free Consultation
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -376,11 +436,12 @@ export default function CIOPlus() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5 }}
-                  className="scroll-mt-28 rounded-2xl bg-white border border-slate-200/70 p-8 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all"
+                  whileHover={{ y: -4 }}
+                  className="group scroll-mt-28 rounded-2xl bg-white border border-slate-200/70 p-8 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all"
                   data-testid={`cio-capability-${c.slug}`}
                 >
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110"
                     style={{ backgroundColor: c.iconBg }}
                   >
                     <c.Icon className="w-6 h-6" style={{ color: c.accent }} strokeWidth={1.75} />
@@ -405,22 +466,157 @@ export default function CIOPlus() {
           </Container>
         </Section>
 
-        {/* Why We Are Different / What This Means For You */}
+        {/* Why We Are Different */}
         <DifferenceMeansSection
           testId="cio-difference"
           eyebrow="The CIO Plus Difference"
-          title={
-            <>
-              Beyond Basic IT Support.
-              <br />
-              Built for Performance.
-            </>
+          title="Everything Connected."
+          subtitle="Most IT companies specialize in one area. CIO+ brings everything together."
+          tags={["Strategic Advisory", "Digital Workplace Productivity", "Agentic AI", "Multi-Vendor Assurance"]}
+          quoteTitle="One managed capability. One trusted partner."
+          quoteDesc="Powered by our Digital Workspace Platform, your technology, workflows, providers, and service performance are managed in one place."
+          rightSlot={
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center"
+            >
+              {/* Phone frame */}
+              <div className="relative w-[210px] shrink-0 rounded-[34px] p-[5px] shadow-2xl shadow-black/50" style={{ background: "linear-gradient(160deg, #2c3a3b 0%, #0e1b1c 55%, #29383a 100%)" }}>
+                <div className="relative w-full h-[448px] rounded-[29px] overflow-hidden bg-[#f6f8f8] flex flex-col">
+                  {/* Dynamic island */}
+                  <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-[52px] h-4 rounded-full bg-[#0b1516] z-10" />
+
+                  {/* Green header */}
+                  <div className="relative shrink-0 rounded-b-[16px]" style={{ background: "linear-gradient(160deg, #17A67B 0%, #13946D 100%)" }}>
+                    <div className="flex items-center justify-between px-3.5 pt-2 text-white text-[9px] font-semibold">
+                      <span>9:41</span>
+                      <div className="flex items-center gap-1">
+                        <div className="flex items-end gap-[1.5px] h-[9px]">
+                          <span className="w-[2px] h-[35%] bg-white rounded-sm" />
+                          <span className="w-[2px] h-[55%] bg-white rounded-sm" />
+                          <span className="w-[2px] h-[75%] bg-white rounded-sm" />
+                          <span className="w-[2px] h-[100%] bg-white rounded-sm" />
+                        </div>
+                        <div className="w-3.5 h-2 border border-white/75 rounded-[2px] relative">
+                          <div className="absolute inset-[1px] bg-white rounded-[1px] w-[70%]" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between gap-2 px-3.5 pt-2 pb-3">
+                      <img
+                        src="/assets/brand/exceeders-mark.png"
+                        alt=""
+                        className="w-5 h-5 shrink-0"
+                        style={{ filter: "brightness(0) invert(1)", opacity: 0.95 }}
+                      />
+                      <p className="font-display text-white text-[13.5px] font-bold">Requests</p>
+                      <div className="w-[22px] h-[22px] rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                        <Sparkles className="w-3 h-3 text-white" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tabs */}
+                  <div className="shrink-0 flex px-3 bg-white border-b border-slate-100">
+                    <span className="flex-1 text-center pt-2.5 pb-2 text-[10px] font-medium text-slate-500">Actions</span>
+                    <span className="flex-1 text-center pt-2.5 pb-2 text-[10px] font-medium text-slate-500">Mine</span>
+                    <span className="flex-1 text-center pt-2.5 pb-2 text-[10px] font-bold text-[#17A67B] border-b-2 border-[#17A67B] -mb-px">All</span>
+                  </div>
+
+                  <div className="shrink-0 px-3.5 pt-2.5 pb-1.5 bg-[#f6f8f8]">
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1 flex items-center gap-1.5 bg-white border border-slate-200 rounded-[10px] px-2.5 py-2">
+                        <Search className="w-2.5 h-2.5 text-slate-400 shrink-0" />
+                        <span className="text-[9.5px] text-slate-500">Search</span>
+                      </div>
+                      <div className="w-[30px] h-[30px] rounded-[10px] bg-white border border-slate-200 flex items-center justify-center shrink-0">
+                        <Menu className="w-3 h-3 text-slate-600" />
+                      </div>
+                    </div>
+                    <div className="mt-2 flex items-center gap-1.5 text-[9px] text-slate-500">
+                      <motion.span
+                        animate={{ opacity: [1, 0.35, 1] }}
+                        transition={{ duration: 2.2, repeat: Infinity }}
+                        className="w-1.5 h-1.5 rounded-full bg-[#17A67B] shrink-0"
+                      />
+                      17,063 requests · 3 need you
+                    </div>
+                  </div>
+
+                  {/* Request list */}
+                  <div className="relative flex-1 px-3.5 pb-3 bg-[#f6f8f8] flex flex-col gap-1.5 overflow-hidden">
+                    {PLATFORM_REQUESTS.map((r, i) => {
+                      const s = STATUS_STYLES[r.status];
+                      return (
+                        <motion.div
+                          key={r.ref}
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, margin: "-80px" }}
+                          transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
+                          className="relative rounded-xl bg-white border border-slate-100 p-2.5 overflow-hidden"
+                        >
+                          <span className="absolute left-0 top-0 bottom-0 w-[2.5px]" style={{ backgroundColor: r.accent }} />
+                          <p className="text-[7px] font-semibold uppercase tracking-wide text-slate-400 truncate">{r.category}</p>
+                          <p className="mt-0.5 text-[10.5px] font-bold text-[#102b26] leading-tight">{r.title}</p>
+                          <div className="mt-1.5 flex items-end justify-between gap-2">
+                            <p className="text-[8px] text-[#3f5a55] leading-snug">
+                              <span className="text-slate-400">By</span> {r.by}
+                              <br />
+                              <span className="text-slate-400">Ref</span> {r.ref}
+                            </p>
+                            <span
+                              className="shrink-0 inline-flex items-center gap-1 rounded-full text-[7.5px] font-semibold px-1.5 py-[3px]"
+                              style={{ backgroundColor: s.bg, color: s.text }}
+                            >
+                              <span className="w-1 h-1 rounded-full" style={{ backgroundColor: s.dot }} />
+                              {r.status}
+                            </span>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+
+                    {/* FAB */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ duration: 0.4, delay: 0.7, type: "spring", stiffness: 300, damping: 20 }}
+                      className="absolute bottom-2 right-3 w-8 h-8 rounded-[11px] flex items-center justify-center shadow-lg"
+                      style={{ backgroundColor: "#17A67B", boxShadow: "0 10px 20px -8px rgba(23,166,123,.8)" }}
+                    >
+                      <Plus className="w-4 h-4 text-white" />
+                    </motion.div>
+                  </div>
+
+                  {/* Bottom tab bar */}
+                  <div className="shrink-0 bg-white border-t border-slate-100 px-2 pt-2 pb-1.5">
+                    <div className="grid grid-cols-5">
+                      {[
+                        { label: "News", Icon: Newspaper },
+                        { label: "Market", Icon: ShoppingBag },
+                        { label: "Requests", Icon: ClipboardList },
+                        { label: "Events", Icon: Calendar },
+                        { label: "Profile", Icon: User },
+                      ].map(({ label, Icon }) => (
+                        <div key={label} className="flex flex-col items-center gap-1">
+                          <Icon className="w-3 h-3" style={{ color: label === "Requests" ? "#17A67B" : "#5c6f73" }} strokeWidth={label === "Requests" ? 2.3 : 1.8} />
+                          <span className="text-[6.5px] font-medium" style={{ color: label === "Requests" ? "#17A67B" : "#5c6f73", fontWeight: label === "Requests" ? 700 : 500 }}>
+                            {label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="w-16 h-1 rounded-full bg-[#0e1b1c] opacity-25 mx-auto mt-2" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           }
-          subtitle="Most IT companies pick one lane. We built the whole road."
-          tags={["Strategic advisory", "Digital workplace productivity", "Agentic AI", "Multi-vendor assurance"]}
-          quoteTitle="One managed capability. One team."
-          quoteDesc="Powered by our Digital Workspace Platform — where your requests, approvals, workflows, providers, and service performance are managed and measured in one place."
-          meansItems={WHAT_IT_MEANS}
         />
 
         {/* Pricing */}
@@ -435,19 +631,19 @@ export default function CIOPlus() {
                   </span>
                 </div>
                 <h2 className="mt-5 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
-                  Flexible services that grow with your business.
+                  Flexible Services That Grow With Your Business.
                 </h2>
               </div>
               <div>
                 <p className="text-[17px] leading-relaxed text-slate-600">
-                  One mid-level IT hire costs more per year than most CIO Plus engagements, and comes without the leadership, the platform, or the provider network. Start with the service that addresses your immediate priority and expand your partnership when your needs evolve.
+                  One mid-level IT hire costs more per year than most CIO Plus engagements. Start with the service that addresses your immediate priority and expand your partnership when your needs evolve.
                 </p>
                 <a
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="cio-pricing-cta"
-                  className="group mt-6 inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 transition-all"
+                  className="group mt-6 inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 hover:scale-[1.03] transition-all"
                 >
                   Request a Proposal
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -485,15 +681,15 @@ export default function CIOPlus() {
             </div>
 
             <p className="mt-8 text-[13.5px] text-slate-500">
-              All engagements are month-to-month. Combine services at any time — one contract, one team.
+              All engagements are month-to-month.
             </p>
           </Container>
         </Section>
 
         <ServiceFinalCTA
           eyebrow="Ready when you are"
-          title="Your business deserves clear IT direction."
-          subtitle="Build a more scalable and profitable business by improving productivity, simplifying operations, controlling technology costs, and innovating continuously, without building a complete internal IT department."
+          title="Your Business Deserves Clear IT Direction."
+          subtitle="Build a more scalable and profitable business without building a complete internal IT department."
           cta="Book A Free Consultation"
           ctaHref={CALENDLY_URL}
         />
@@ -502,7 +698,7 @@ export default function CIOPlus() {
         <Section className="bg-white" id="faq">
           <Container>
             <div className="max-w-3xl mx-auto">
-              <SectionHeading align="center" eyebrow="FAQ" title="Common questions about CIO Plus" />
+              <SectionHeading align="center" eyebrow="FAQ" title="Common Questions About CIO Plus" />
               <div className="mt-10">
                 {FAQS.map((f, i) => (
                   <FAQItem key={i} q={f.q} a={f.a} testId={`cio-faq-${i + 1}`} />

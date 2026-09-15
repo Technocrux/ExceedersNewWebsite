@@ -81,6 +81,49 @@ code {
     pointer-events: none;
 }
 
+/* Slow ambient drift for glow orbs on rich dark sections */
+@keyframes float-slow {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(3%, -4%) scale(1.06);
+    }
+}
+.glow-orb-float {
+    animation: float-slow 14s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    .glow-orb-float {
+        animation: none;
+    }
+}
+
+/* eXceeders green gradient card accents — subtle brand-color wash, sits behind content.
+   One shared formula (intensity + stops); only the circle's position changes per class,
+   so every card in a grid reads as the same design language. */
+.accent-glow-corner,
+.accent-glow-top-left,
+.accent-glow-top-right,
+.accent-glow-right,
+.accent-glow-bottom-right,
+.accent-glow-bottom,
+.accent-glow-bottom-left,
+.accent-glow-left,
+.accent-glow-middle {
+    background-image: radial-gradient(circle at var(--glow-x, 12%) var(--glow-y, 12%), rgba(5, 150, 105, 0.08) 0%, rgba(198, 229, 222, 0.07) 45%, transparent 70%);
+    background-repeat: no-repeat;
+}
+.accent-glow-corner,
+.accent-glow-top-left { --glow-x: 12%; --glow-y: 12%; }
+.accent-glow-top-right { --glow-x: 88%; --glow-y: 12%; }
+.accent-glow-right { --glow-x: 92%; --glow-y: 50%; }
+.accent-glow-bottom-right { --glow-x: 88%; --glow-y: 88%; }
+.accent-glow-bottom { --glow-x: 50%; --glow-y: 92%; }
+.accent-glow-bottom-left { --glow-x: 12%; --glow-y: 88%; }
+.accent-glow-left { --glow-x: 8%; --glow-y: 50%; }
+.accent-glow-middle { --glow-x: 50%; --glow-y: 50%; }
+
 /* Marquee gradient masks */
 .mask-fade-x {
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);

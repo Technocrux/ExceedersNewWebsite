@@ -17,7 +17,7 @@ import {
 import { motion } from "framer-motion";
 import {
   Clock, ShieldCheck, Eye, ClipboardList, TrendingDown, UserCog, Users,
-  Monitor, Bot, AlertTriangle, HelpCircle, BarChart3, ArrowRight, Info,
+  Monitor, Bot, ArrowRight,
 } from "lucide-react";
 
 const WHY_GOOD = [
@@ -62,43 +62,50 @@ const SOLUTION = [
   {
     title: "Dedicated ProjectOps Specialist",
     desc: "One person joins your team and owns governance, planning, reporting, and compliance, so it's someone's job, not everyone's afterthought.",
-    icon: UserCog,
   },
   {
     title: "Governance That Doesn't Slip",
     desc: "Charters, plans, approvals, risks, and decisions stay current through the whole project, not just at kickoff.",
-    icon: ShieldCheck,
   },
   {
     title: "Reporting You Don't Chase",
     desc: "Dashboards and status updates get built and sent, so \"what's the latest\" isn't a question someone has to answer manually.",
-    icon: BarChart3,
   },
   {
     title: "Risk Flagged Early",
     desc: "Dependencies and approvals are watched continuously, so issues get raised while they're still small.",
-    icon: AlertTriangle,
   },
   {
     title: "PlanneXe (Optional)",
     desc: "One platform for planning and reporting, instead of five tools and a shared drive nobody trusts.",
-    icon: Monitor,
   },
 ];
 
 const PRICING = [
   {
+    category: "People",
     label: "Dedicated ProjectOps Specialist",
     price: "USD 4,000",
     unit: "per resource, per month",
-    icon: UserCog,
+    desc: "Scales with the number of specialists embedded in your team.",
   },
   {
+    category: "Platform",
     label: "ProjectOps + PlanneXe Platform",
     price: "USD 1,000",
     unit: "per project, per month",
-    icon: Monitor,
+    desc: "Scales with the number of active projects under management.",
+    highlight: true,
   },
+];
+
+const HOW_WE_DO_IT = [
+  "Assign a dedicated ProjectOps Specialist",
+  "Establish project governance",
+  "Manage planning, reporting, documentation, risks, approvals, and compliance",
+  "Operate project ceremonies",
+  "Generate executive dashboards and reports",
+  "Continuously monitor project health and proactively escalate risks",
 ];
 
 const FAQS = [
@@ -163,7 +170,7 @@ export default function OperatePlus() {
               <div className="lg:col-span-5 flex flex-col justify-center">
                 <Eyebrow>Best For</Eyebrow>
                 <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
-                  Organizations with internal Project Managers that need stronger governance, reporting, and project execution without growing their PMO.
+                  Organizations scaling project performance and governance without growing their PMO.
                 </h2>
               </div>
 
@@ -182,7 +189,7 @@ export default function OperatePlus() {
 
                 <div className="mt-7 pt-6 border-t border-slate-200/70">
                   <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-brand-emerald">
-                    How You Engage
+                    Engagement Models
                   </p>
                   <div className="mt-4 flex flex-wrap items-center gap-3">
                     {ENGAGE_MODELS.map((m) => (
@@ -205,7 +212,7 @@ export default function OperatePlus() {
         <Section className="bg-[#F7F9FA]">
           <Container>
             <SectionHeading
-              eyebrow="Proof"
+              eyebrow="Proof & Capabilities"
               title="Proven Through Gulf Project Delivery"
               subtitle="Organizations using our ProjectOps approach reported higher project success rates, stronger governance, and significantly better project traceability."
             />
@@ -221,7 +228,7 @@ export default function OperatePlus() {
         <Section className="bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-              <div className="lg:col-span-5">
+              <div className="lg:col-span-6">
                 <Eyebrow>The Challenge</Eyebrow>
                 <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
                   Somewhere Along the Way, Your PM Became an Admin
@@ -230,12 +237,17 @@ export default function OperatePlus() {
                   Projects grow, and so does the paperwork. Someone has to own it, so it falls to the Project Manager, the person who should be leading the customer instead.
                 </p>
               </div>
-              <div className="lg:col-span-7">
-                <ul className="space-y-3">
-                  {CHALLENGE_QUESTIONS.map((q) => (
-                    <li key={q} className="flex items-start gap-3 p-4 rounded-xl bg-red-50/60 border border-red-100">
-                      <HelpCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                      <p className="text-[14.5px] leading-relaxed text-slate-700">{q}</p>
+              <div className="lg:col-span-6">
+                <p className="text-[15px] font-semibold text-brand-dark">
+                  Ask yourself:
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {CHALLENGE_QUESTIONS.map((q, i) => (
+                    <li key={q} className="flex items-start gap-3">
+                      <div className="w-7 h-7 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold text-[12px] shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
+                      <p className="text-[15px] leading-relaxed text-slate-700">{q}</p>
                     </li>
                   ))}
                 </ul>
@@ -250,13 +262,57 @@ export default function OperatePlus() {
         {/* Our Solution */}
         <Section className="bg-[#F7F9FA]" id="our-solution">
           <Container>
-            <SectionHeading
-              eyebrow="Our Solution"
-              title="We Take the Operational Load Off Your PM's Desk"
-            />
-            <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-5">
-              {SOLUTION.map((s) => (
-                <FeatureCard key={s.title} icon={s.icon} title={s.title} description={s.desc} />
+            <div className="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-2 gap-4 lg:gap-6">
+              <div className="lg:col-start-1 lg:col-span-4 lg:row-start-1">
+                <div className="flex items-center gap-3">
+                  <span className="h-px w-6 bg-brand-emerald" />
+                  <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-brand-emerald">
+                    Our Solution
+                  </span>
+                </div>
+                <h2 className="mt-5 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                  We Take the Operational Load Off Your PM's Desk
+                </h2>
+              </div>
+
+              {[SOLUTION[1], SOLUTION[2]].map((s, i) => (
+                <motion.div
+                  key={s.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                  whileHover={{ y: -4 }}
+                  className={`h-full flex flex-col rounded-2xl bg-white border border-slate-200/70 p-6 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all lg:row-start-1 ${
+                    i === 0 ? "lg:col-start-5 lg:col-span-4 accent-glow-right" : "lg:col-start-9 lg:col-span-4 accent-glow-top-right"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-brand-emerald shrink-0" />
+                    <p className="font-display text-[16px] font-bold text-brand-dark leading-tight">{s.title}</p>
+                  </div>
+                  <p className="mt-2.5 text-[13.5px] leading-relaxed text-slate-600">{s.desc}</p>
+                </motion.div>
+              ))}
+
+              {[SOLUTION[0], SOLUTION[3], SOLUTION[4]].map((s, i) => (
+                <motion.div
+                  key={s.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.5, delay: 0.12 + i * 0.06 }}
+                  whileHover={{ y: -4 }}
+                  className={`h-full flex flex-col rounded-2xl bg-white border border-slate-200/70 p-6 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all lg:row-start-2 ${
+                    i === 0 ? "lg:col-start-1 lg:col-span-4 accent-glow-corner" : i === 1 ? "lg:col-start-5 lg:col-span-4 accent-glow-bottom" : "lg:col-start-9 lg:col-span-4 accent-glow-bottom-right"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-brand-emerald shrink-0" />
+                    <p className="font-display text-[16px] font-bold text-brand-dark leading-tight">{s.title}</p>
+                  </div>
+                  <p className="mt-2.5 text-[13.5px] leading-relaxed text-slate-600">{s.desc}</p>
+                </motion.div>
               ))}
             </div>
           </Container>
@@ -265,52 +321,126 @@ export default function OperatePlus() {
         {/* Pricing */}
         <Section className="bg-white" id="pricing">
           <Container>
-            <SectionHeading
-              eyebrow="Pricing"
-              title="Straightforward Pricing, Scaled to What You Need"
-            />
-            <div className="mt-12 max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {PRICING.map((p) => (
-                <div
-                  key={p.label}
-                  data-testid={`operate-pricing-${p.label.toLowerCase().replace(/\s+/g, "-").replace(/\+/g, "plus")}`}
-                  className="rounded-2xl bg-white border border-slate-200/70 p-7"
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+              <div className="lg:col-span-6">
+                <Eyebrow>Pricing</Eyebrow>
+                <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                  Straightforward Pricing, Scaled to What You Need
+                </h2>
+                <p className="mt-5 text-[16px] leading-relaxed text-slate-600">
+                  Take a dedicated specialist, the platform, or both — you pay per resource and per project, so the cost scales with the work rather than a fixed contract.
+                </p>
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="operate-pricing-cta"
+                  className="group mt-7 inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 hover:scale-[1.03] transition-all"
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: "#D7EBC7" }}>
-                    <p.icon className="w-6 h-6 text-[#07404B]" strokeWidth={1.75} />
-                  </div>
-                  <p className="mt-5 text-[14.5px] font-semibold text-slate-700">{p.label}</p>
-                  <p className="mt-2 font-display text-2xl font-extrabold text-brand-emerald">{p.price}</p>
-                  <p className="text-[13px] text-slate-500">{p.unit}</p>
-                </div>
-              ))}
+                  Book a ProjectOps Assessment
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+
+              <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {PRICING.map((p, i) => (
+                  <motion.div
+                    key={p.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    whileHover={{ y: -4 }}
+                    data-testid={`operate-pricing-${p.label.toLowerCase().replace(/\s+/g, "-").replace(/\+/g, "plus")}`}
+                    className={`rounded-2xl border p-6 flex flex-col ${
+                      p.highlight
+                        ? "bg-gradient-to-br from-[#07404B] to-[#0D1F2D] border-transparent"
+                        : "bg-[#F7F9FA] border-slate-200/70"
+                    }`}
+                  >
+                    <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${p.highlight ? "text-brand-sea" : "text-slate-500"}`}>
+                      {p.category}
+                    </p>
+                    <p className={`mt-2 font-display text-[17px] font-bold leading-snug ${p.highlight ? "text-white" : "text-brand-dark"}`}>
+                      {p.label}
+                    </p>
+
+                    <div className={`mt-5 pt-4 border-t ${p.highlight ? "border-white/10" : "border-slate-200/70"}`}>
+                      <p className={`font-display text-[22px] font-extrabold leading-tight ${p.highlight ? "text-white" : "text-brand-dark"}`}>
+                        {p.price}
+                      </p>
+                      <p className={`mt-1 text-[12px] ${p.highlight ? "text-slate-400" : "text-slate-500"}`}>
+                        {p.unit}
+                      </p>
+                    </div>
+
+                    <p className={`mt-5 pt-4 border-t text-[13px] leading-relaxed flex-1 ${p.highlight ? "border-white/10 text-slate-300" : "border-slate-200/70 text-slate-600"}`}>
+                      {p.desc}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-8 flex justify-center">
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="operate-pricing-cta"
-                className="group inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 transition-all"
-              >
-                Book a ProjectOps Assessment
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-
-            <div className="mt-10 max-w-2xl mx-auto flex items-start gap-3 rounded-2xl bg-amber-50 border border-amber-200 p-5">
-              <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-              <p className="text-[13.5px] leading-relaxed text-amber-900">
-                <span className="font-semibold">Heads up:</span> certified ProjectOps Specialists are in high demand. New engagements typically take 3 to 4 months to start.
+            <div className="mt-10 pt-8 border-t border-slate-200/70 flex items-start gap-3">
+              <span className="shrink-0 rounded-full border border-amber-300 bg-amber-50 text-amber-700 text-[10.5px] font-semibold uppercase tracking-[0.1em] px-3 py-1.5">
+                Lead Time
+              </span>
+              <p className="text-[14px] leading-relaxed text-slate-600">
+                Certified ProjectOps Specialists are in high demand — new engagements typically take{" "}
+                <span className="font-semibold text-brand-dark">3 to 4 months</span> to start.
               </p>
+            </div>
+          </Container>
+        </Section>
+
+        {/* How We Do It */}
+        <Section className="bg-[#F7F9FA]">
+          <Container>
+            <div className="max-w-2xl">
+              <Eyebrow>How We Do It</Eyebrow>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                A Clear Path From Assignment To Ongoing Oversight.
+              </h2>
+            </div>
+            <div className="mt-14 flex flex-col sm:flex-row sm:items-start gap-8 sm:gap-0">
+              {HOW_WE_DO_IT.map((step, i) => {
+                const isLast = i === HOW_WE_DO_IT.length - 1;
+                return (
+                  <div key={step} className="relative flex-1">
+                    {!isLast && (
+                      <div className="hidden sm:block absolute top-4 left-8 right-0 h-0 border-t-2 border-dashed border-slate-300" />
+                    )}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ type: "spring", stiffness: 400, damping: 22, delay: i * 0.08 }}
+                      className={`relative w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-bold text-white shrink-0 ${
+                        isLast ? "bg-brand-dark" : "bg-brand-emerald"
+                      }`}
+                    >
+                      {i + 1}
+                    </motion.div>
+                    <p className="mt-4 pr-4 text-[13.5px] leading-snug font-medium text-brand-dark">
+                      {step}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </Container>
         </Section>
 
         <ServiceFinalCTA
           eyebrow="Ready when you are"
-          title="Give Your Project Managers Their Time Back"
+          title={
+            <>
+              Give Your Project Managers
+              <br />
+              Their Time Back
+            </>
+          }
           subtitle="Stop letting admin work eat into delivery. Let Operate+ handle governance, reporting, and compliance while your team gets projects done."
           cta="Book a ProjectOps Assessment"
           ctaHref={CALENDLY_URL}

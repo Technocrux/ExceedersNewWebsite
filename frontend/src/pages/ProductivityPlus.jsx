@@ -82,17 +82,43 @@ const PRICING = [
     name: "Productivity Starter",
     desc: "Structured incident-based support with essential advisory services.",
     price: "USD 400",
+    details: [
+      { label: "Support model", value: "Per incident" },
+      { label: "Advisory", value: "Essentials" },
+      { label: "Named specialist", value: "—" },
+    ],
   },
   {
     name: "Productivity Growth",
     desc: "Greater support capacity, user enablement, and proactive optimization.",
     price: "USD 800",
+    highlight: true,
+    badge: "Most Popular",
+    details: [
+      { label: "Support model", value: "Expanded capacity" },
+      { label: "Advisory", value: "Proactive optimization" },
+      { label: "Named specialist", value: "Shared", accent: true },
+    ],
   },
   {
     name: "Productivity Ultimate",
     desc: "A fully managed service with a dedicated Digital Enablement Specialist.",
     price: "USD 2,000",
+    details: [
+      { label: "Support model", value: "Fully managed" },
+      { label: "Advisory", value: "Continuous" },
+      { label: "Named specialist", value: "Dedicated", accent: true },
+    ],
   },
+];
+
+const HOW_WE_DO_IT = [
+  "Assess the digital workplace",
+  "Deploy a dedicated Digital Enablement Team",
+  "Support employees and business applications",
+  "Coach users and increase adoption",
+  "Monitor performance and user experience",
+  "Continuously optimize productivity and workplace technology",
 ];
 
 const FAQS = [
@@ -144,7 +170,7 @@ export default function ProductivityPlus() {
               Keep Your Business Growing.
             </>
           }
-          subtitle="Productivity+ provides structured end-user support, workplace administration, and productivity optimization, keeping your employees productive while your digital workplace runs efficiently."
+          subtitle="Productivity+ provides structured end-user support, workplace administration, and productivity optimization."
           cta="Book a Free Consultation"
           ctaHref={CALENDLY_URL}
           testId="productivity-hero"
@@ -157,7 +183,7 @@ export default function ProductivityPlus() {
               <div className="lg:col-span-5 flex flex-col justify-center">
                 <Eyebrow>Best For</Eyebrow>
                 <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
-                  Organizations that don't have their own IT team and want professional, structured end-user support for their digital workplace.
+                  Organizations seeking end-user support for their digital workplace.
                 </h2>
               </div>
 
@@ -176,7 +202,7 @@ export default function ProductivityPlus() {
 
                 <div className="mt-7 pt-6 border-t border-slate-200/70">
                   <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-brand-emerald">
-                    How You Engage
+                    Engagement Models
                   </p>
                   <div className="mt-4 flex flex-wrap items-center gap-3">
                     <div className="inline-flex items-center gap-2.5 rounded-full bg-white border border-brand-emerald/20 px-4 py-2.5 shadow-sm shadow-slate-900/5">
@@ -280,11 +306,33 @@ export default function ProductivityPlus() {
         {/* Pricing */}
         <Section className="bg-white" id="pricing">
           <Container>
-            <SectionHeading
-              eyebrow="Pricing & Capabilities"
-              title="Flexible Plans That Grow With Your Business"
-            />
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="h-px w-6 bg-brand-emerald" />
+                  <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-brand-emerald">
+                    Pricing &amp; Capabilities
+                  </span>
+                </div>
+                <h2 className="mt-5 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                  Flexible Plans That Grow With Your Business
+                </h2>
+              </div>
+              <div className="lg:flex lg:justify-end">
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="productivity-pricing-cta"
+                  className="group mt-6 lg:mt-0 inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 transition-all"
+                >
+                  Request a Proposal
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5">
               {PRICING.map((p, i) => (
                 <motion.div
                   key={p.name}
@@ -292,34 +340,93 @@ export default function ProductivityPlus() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  whileHover={{ y: -4 }}
                   data-testid={`productivity-pricing-${p.name.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="rounded-2xl bg-white border border-slate-200/70 p-7 flex flex-col hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all"
+                  className={`relative flex flex-col rounded-2xl border p-7 ${
+                    p.highlight
+                      ? "bg-gradient-to-br from-[#07404B] to-[#0D1F2D] border-transparent md:-translate-y-2"
+                      : "bg-[#F7F9FA] border-slate-200/70"
+                  }`}
                 >
-                  <p className="font-display text-[19px] font-bold text-brand-dark">{p.name}</p>
-                  <p className="mt-3 text-[14px] leading-relaxed text-slate-600 flex-1">{p.desc}</p>
-                  <p className="mt-6 font-display text-3xl font-extrabold text-brand-emerald">
-                    {p.price}<span className="text-[15px] font-semibold text-slate-500">/month</span>
+                  {p.badge && (
+                    <span className="absolute -top-3 left-7 rounded-full bg-brand-emerald text-white text-[10.5px] font-semibold uppercase tracking-[0.08em] px-3 py-1">
+                      {p.badge}
+                    </span>
+                  )}
+
+                  <p className={`font-display text-[17px] font-bold ${p.highlight ? "text-white" : "text-brand-dark"}`}>
+                    {p.name}
                   </p>
+                  <p className={`mt-2 text-[13px] leading-relaxed ${p.highlight ? "text-slate-300" : "text-slate-600"}`}>
+                    {p.desc}
+                  </p>
+
+                  <div className={`mt-6 pt-5 border-t ${p.highlight ? "border-white/10" : "border-slate-200/70"}`}>
+                    <p className={`font-display text-[26px] font-extrabold leading-tight ${p.highlight ? "text-white" : "text-brand-dark"}`}>
+                      {p.price}
+                      <span className={`text-[14px] font-semibold ${p.highlight ? "text-slate-400" : "text-slate-500"}`}> /month</span>
+                    </p>
+                  </div>
+
+                  <div className={`mt-6 pt-5 border-t space-y-2.5 flex-1 ${p.highlight ? "border-white/10" : "border-slate-200/70"}`}>
+                    {p.details.map((d) => (
+                      <div key={d.label} className="flex items-center justify-between gap-3 text-[13px]">
+                        <span className={p.highlight ? "text-slate-400" : "text-slate-500"}>{d.label}</span>
+                        <span
+                          className={`font-semibold ${
+                            d.accent
+                              ? p.highlight ? "text-brand-sea" : "text-brand-emerald"
+                              : p.highlight ? "text-slate-200" : "text-brand-dark"
+                          }`}
+                        >
+                          {d.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </motion.div>
               ))}
             </div>
 
-            <p className="mt-8 text-center text-[13px] text-slate-500">
-              Commercial Terms: Annual contract · Two-month cancellation notice · Additional incidents charged per package
+            <p className="mt-8 text-[13.5px] text-slate-500">
+              Commercial terms: annual contract · two-month cancellation notice · additional incidents charged per package.
             </p>
+          </Container>
+        </Section>
 
-            <div className="mt-8 flex justify-center">
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="productivity-pricing-cta"
-                className="group inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 transition-all"
-              >
-                Request a Proposal
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+        {/* How We Do It */}
+        <Section className="bg-[#F7F9FA]">
+          <Container>
+            <div className="max-w-2xl">
+              <Eyebrow>How We Do It</Eyebrow>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                A Clear Path To A Better Digital Workplace.
+              </h2>
+            </div>
+            <div className="mt-14 flex flex-col sm:flex-row sm:items-start gap-8 sm:gap-0">
+              {HOW_WE_DO_IT.map((step, i) => {
+                const isLast = i === HOW_WE_DO_IT.length - 1;
+                return (
+                  <div key={step} className="relative flex-1">
+                    {!isLast && (
+                      <div className="hidden sm:block absolute top-4 left-8 right-0 h-0 border-t-2 border-dashed border-slate-300" />
+                    )}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ type: "spring", stiffness: 400, damping: 22, delay: i * 0.08 }}
+                      className={`relative w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-bold text-white shrink-0 ${
+                        isLast ? "bg-brand-dark" : "bg-brand-emerald"
+                      }`}
+                    >
+                      {i + 1}
+                    </motion.div>
+                    <p className="mt-4 pr-4 text-[14px] leading-snug font-medium text-brand-dark">
+                      {step}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </Container>
         </Section>

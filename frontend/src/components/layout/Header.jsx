@@ -1,12 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import {
-  Menu, X, ExternalLink, ChevronDown, ArrowRight,
+  Menu, X, ExternalLink, ChevronDown,
   Compass, ClipboardList, Users, LifeBuoy, Code2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const LOGO_URL = "/assets/brand/logo-white.png";
+const WHATSAPP_URL = "https://wa.me/971508183431";
+
+const WhatsAppIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+    <path
+      d="M12 3a9 9 0 0 0-7.79 13.51L3 21l4.62-1.19A9 9 0 1 0 12 3Z"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M8.4 8.3c.18-.4.37-.41.55-.42h.47c.15 0 .35-.06.55.42.2.5.68 1.72.74 1.85.06.13.1.28.02.45-.08.17-.12.28-.24.43-.12.15-.25.33-.36.44-.12.12-.25.25-.11.5.15.24.65 1.08 1.4 1.74.96.86 1.77 1.13 2.02 1.26.25.13.4.11.55-.06.15-.18.63-.73.8-.98.17-.25.34-.2.56-.12.23.08 1.46.69 1.71.82.25.12.42.18.48.29.06.1.06.6-.14 1.18-.2.58-1.18 1.14-1.63 1.2-.41.06-.93.09-1.5-.1-.34-.11-.79-.26-1.37-.5-2.4-1.04-3.98-3.44-4.1-3.6-.12-.16-.98-1.3-.98-2.48 0-1.18.62-1.76.84-2Z"
+      fill="currentColor"
+    />
+  </svg>
+);
 
 // Solutions with defined package offerings.
 const SOLUTIONS_MAIN = [
@@ -49,7 +66,7 @@ const SOLUTIONS_MAIN = [
     accent: "#8B5CA8",
     packages: [
       { label: "Professionals+", to: "/talent-plus/professional-plus" },
-      { label: "IT Provider+", to: "/talent-plus#it-provider-plus" },
+      { label: "IT Provider+", to: "/talent-plus/provider-plus" },
       { label: "Software+", to: "/talent-plus/software-plus" },
     ],
   },
@@ -124,34 +141,20 @@ const SolutionColumn = ({ solution, testIdPrefix }) => (
 );
 
 const SolutionsMegaMenu = ({ testIdPrefix }) => (
-  <div className="w-[720px] max-w-[88vw] rounded-3xl bg-white border border-slate-200/70 shadow-2xl shadow-slate-900/10 overflow-hidden">
-    <div className="p-8">
-      <div className="grid grid-cols-3 gap-8">
-        {SOLUTIONS_MAIN.map((s) => (
-          <SolutionColumn key={s.id} solution={s} testIdPrefix={testIdPrefix} />
-        ))}
-      </div>
-
-      <div className="mt-8 grid grid-cols-2 gap-8 border-t border-slate-100 pt-8">
-        {SOLUTIONS_SECONDARY.map((s) => (
-          <SolutionColumn key={s.id} solution={s} testIdPrefix={testIdPrefix} />
-        ))}
+  <div className="w-[92vw] max-w-[1240px] rounded-3xl bg-white border border-slate-200/70 shadow-2xl shadow-slate-900/10 overflow-hidden">
+    <div className="p-10 xl:p-12">
+      <div className="grid grid-cols-4 gap-10 xl:gap-14 items-start">
+        <SolutionColumn solution={SOLUTIONS_MAIN[0]} testIdPrefix={testIdPrefix} />
+        <SolutionColumn solution={SOLUTIONS_MAIN[1]} testIdPrefix={testIdPrefix} />
+        <SolutionColumn solution={SOLUTIONS_MAIN[2]} testIdPrefix={testIdPrefix} />
+        <div className="flex flex-col gap-8">
+          <SolutionColumn solution={SOLUTIONS_SECONDARY[0]} testIdPrefix={testIdPrefix} />
+          <div className="border-t border-slate-100 pt-8">
+            <SolutionColumn solution={SOLUTIONS_SECONDARY[1]} testIdPrefix={testIdPrefix} />
+          </div>
+        </div>
       </div>
     </div>
-
-    <Link
-      to="/#ways-we-help"
-      data-testid={`${testIdPrefix}-view-all`}
-      className="group flex items-center justify-between bg-[#F7F9FA] px-8 py-5 hover:bg-brand-pistachio/30 transition-colors"
-    >
-      <span className="text-[14px] font-semibold text-brand-dark">
-        Explore all solutions
-      </span>
-      <span className="inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-brand-emerald">
-        View all solutions
-        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-      </span>
-    </Link>
   </div>
 );
 
@@ -264,11 +267,11 @@ export const Header = () => {
               <AnimatePresence>
                 {solutionsOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 8, x: "-50%" }}
+                    animate={{ opacity: 1, y: 0, x: "-50%" }}
+                    exit={{ opacity: 0, y: 8, x: "-50%" }}
                     transition={{ duration: 0.18, ease: "easeOut" }}
-                    className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50"
+                    className="fixed left-1/2 top-[76px] z-50"
                   >
                     <SolutionsMegaMenu testIdPrefix="mega-menu" />
                   </motion.div>
@@ -315,6 +318,16 @@ export const Header = () => {
             >
               Marketplace Site
               <ExternalLink className="w-4 h-4 opacity-90 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat with us on WhatsApp"
+              data-testid="header-whatsapp-cta"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-emerald-300 text-emerald-400 hover:text-emerald-500 hover:border-emerald-400 hover:bg-emerald-50 transition-colors shrink-0"
+            >
+              <WhatsAppIcon className="w-[22px] h-[22px]" />
             </a>
           </div>
 
@@ -427,6 +440,16 @@ export const Header = () => {
               >
                 Marketplace Site
                 <ExternalLink className="w-4 h-4" />
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="mobile-whatsapp-cta"
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-emerald-300 text-emerald-500 px-5 py-3 text-sm font-semibold"
+              >
+                <WhatsAppIcon className="w-5 h-5" />
+                Chat on WhatsApp
               </a>
             </div>
           </motion.div>

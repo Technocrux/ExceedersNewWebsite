@@ -1,4 +1,4 @@
-const LOGOS = [
+export const LOGOS = [
   { name: "Xpertier", src: "/assets/clients/xpertier.png" },
   { name: "Webville", src: "/assets/clients/webville.png" },
   { name: "Vibes", src: "/assets/clients/vibes.png" },
@@ -15,7 +15,7 @@ const LOGOS = [
   { name: "Abu Dhabi Police", src: "/assets/clients/abu-dhabi-police.png" },
 ];
 
-const LogoBadge = ({ name, src }) => (
+export const LogoBadge = ({ name, src }) => (
   <div
     data-testid={`trusted-logo-${name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`}
     className="shrink-0 flex items-center justify-center px-8 md:px-12 py-3"

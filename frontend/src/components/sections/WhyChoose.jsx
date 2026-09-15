@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { TrendingDown, Target, ShieldCheck } from "lucide-react";
 import CountUp from "@/components/CountUp";
 
+const GLOW_POSITIONS = ["accent-glow-corner", "accent-glow-right", "accent-glow-bottom-left"];
+
 const STATS = [
   {
     id: "cost",
@@ -69,7 +71,7 @@ export const WhyChoose = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.55, delay: i * 0.1, ease: "easeOut" }}
-              className="group relative bg-white rounded-2xl p-8 border border-slate-200/70 hover:border-brand-emerald/30 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5 transition-all"
+              className={`group relative bg-white rounded-2xl p-8 border border-slate-200/70 hover:border-brand-emerald/30 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5 transition-all ${GLOW_POSITIONS[i % GLOW_POSITIONS.length]}`}
             >
               <div className={`w-12 h-12 rounded-xl ${s.tint} flex items-center justify-center`}>
                 <s.Icon className="w-6 h-6" style={{ color: s.color }} />

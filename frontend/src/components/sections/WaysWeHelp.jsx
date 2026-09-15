@@ -96,51 +96,7 @@ export const WaysWeHelp = () => {
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
           {SERVICES.map((s, i) => {
             const isLast = i === SERVICES.length - 1;
-            const CardInner = isLast ? (
-              <>
-                {/* soft gradient wash */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${s.tint} opacity-0 group-hover:opacity-100 transition-opacity`}
-                />
-                <div className="relative md:flex md:items-start md:gap-8">
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: s.iconBg }}
-                  >
-                    <s.Icon className="w-6 h-6" style={{ color: s.accent }} />
-                  </div>
-
-                  <div className="mt-6 md:mt-0 md:w-64 md:shrink-0">
-                    <span
-                      className="inline-block text-[11px] font-semibold uppercase tracking-[0.18em]"
-                      style={{ color: s.accent }}
-                    >
-                      {s.label}
-                    </span>
-                    <p className="mt-1 text-[13px] font-semibold text-slate-500">
-                      {s.name}
-                    </p>
-                    <h3 className="mt-3 font-display text-[22px] leading-[1.15] font-bold text-brand-dark tracking-tight">
-                      {s.title}
-                    </h3>
-                  </div>
-
-                  <div className="mt-4 md:mt-0 md:flex-1">
-                    <p className="text-[15.5px] leading-relaxed text-slate-600">
-                      {s.desc}
-                    </p>
-
-                    <span
-                      className="mt-6 inline-flex items-center gap-2 text-[14px] font-semibold group-hover:gap-3 transition-all"
-                      style={{ color: s.accent }}
-                    >
-                      {s.cta}
-                      <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </div>
-              </>
-            ) : (
+            const CardInner = (
               <>
                 {/* soft gradient wash */}
                 <div
@@ -167,10 +123,10 @@ export const WaysWeHelp = () => {
                     </div>
                   </div>
 
-                  <h3 className="mt-8 font-display text-[26px] md:text-[30px] leading-[1.15] font-bold text-brand-dark tracking-tight">
+                  <h3 className={`mt-8 font-display text-[26px] md:text-[30px] leading-[1.15] font-bold text-brand-dark tracking-tight ${isLast ? "md:whitespace-nowrap" : ""}`}>
                     {s.title}
                   </h3>
-                  <p className="mt-4 text-[15.5px] leading-relaxed text-slate-600">
+                  <p className={`mt-4 text-[15.5px] leading-relaxed text-slate-600 ${isLast ? "md:max-w-xl" : ""}`}>
                     {s.desc}
                   </p>
 

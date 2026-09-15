@@ -69,6 +69,37 @@ const SOLUTION = [
   },
 ];
 
+const CHALLENGES = [
+  "Finding the right AI expertise",
+  "Connecting AI with existing systems",
+  "Turning business rules into working AI processes",
+  "Building AI agents that fit real operations",
+  "Maintaining and improving AI performance over time",
+];
+
+const HOW_WE_DO_IT = [
+  "Assess business processes",
+  "Identify repetitive work",
+  "Design Agentic AI solutions",
+  "Build and deploy AI within Digital Workspaces",
+  "Integrate with business systems and AI models",
+  "Train users",
+  "Continuously optimize AI performance and business outcomes",
+];
+
+const PRICE_DRIVERS = [
+  { title: "Process complexity", desc: "Decision points, exceptions and approvals the agent must handle.", badge: "Largest Driver" },
+  { title: "Integrations", desc: "How many systems the agent reads from and writes back to.", badge: "Moderate" },
+  { title: "Business process automated", desc: "Volume, risk and how much oversight the outcome requires.", badge: "Moderate" },
+];
+
+const INCLUDED_IN_EVERY_AGENT = [
+  "Process assessment",
+  "AI workflow design",
+  "Build and deployment",
+  "Continuous optimization",
+];
+
 const FAQS = [
   {
     q: "What is an Agentic AI?",
@@ -131,7 +162,7 @@ export default function AIPlus() {
               <div className="lg:col-span-5 flex flex-col justify-center">
                 <Eyebrow>Best For</Eyebrow>
                 <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
-                  Organizations that want to use AI to improve productivity, automate repetitive work, and standardize outputs, not just experiment with another AI tool.
+                  Ideal for organizations seeking real AI productivity and automated workflows.
                 </h2>
               </div>
 
@@ -150,7 +181,7 @@ export default function AIPlus() {
 
                 <div className="mt-7 pt-6 border-t border-slate-200/70">
                   <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-brand-emerald">
-                    How You Engage
+                    Engagement Models
                   </p>
                   <div className="mt-4 flex flex-wrap items-center gap-3">
                     <div className="inline-flex items-center gap-2.5 rounded-full bg-white border border-brand-emerald/20 px-4 py-2.5 shadow-sm shadow-slate-900/5">
@@ -207,17 +238,31 @@ export default function AIPlus() {
         {/* The Challenge */}
         <Section className="bg-white">
           <Container>
-            <div className="max-w-3xl">
-              <Eyebrow>The Challenge</Eyebrow>
-              <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
-                AI Tools Alone Won't Transform Your Business
-              </h2>
-              <p className="mt-6 text-[17px] leading-relaxed text-slate-600">
-                New AI tools appear every day, but real business value takes more than connecting to an external AI provider.
-              </p>
-              <p className="mt-4 text-[17px] leading-relaxed text-slate-600">
-                Building Agentic AI requires the right AI expertise, development capabilities, system integrations, business rules, and ongoing optimization to turn AI into a working part of your operations.
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+              <div className="lg:col-span-6">
+                <Eyebrow>The Challenge</Eyebrow>
+                <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                  AI Tools Alone Won't Transform Your Business
+                </h2>
+                <p className="mt-5 text-[17px] leading-relaxed text-slate-600">
+                  Building Agentic AI takes more than choosing the right tool.
+                </p>
+              </div>
+              <div className="lg:col-span-6">
+                <p className="text-[15px] font-semibold text-brand-dark">
+                  Businesses often struggle with:
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {CHALLENGES.map((c, i) => (
+                    <li key={c} className="flex items-start gap-3">
+                      <div className="w-7 h-7 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold text-[12px] shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
+                      <p className="text-[15px] leading-relaxed text-slate-700">{c}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </Container>
         </Section>
@@ -240,43 +285,136 @@ export default function AIPlus() {
         {/* Pricing */}
         <Section className="bg-white" id="pricing">
           <Container>
-            <div className="max-w-2xl mx-auto text-center">
-              <Eyebrow>Pricing</Eyebrow>
-              <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-3">
+                <span className="h-px w-6 bg-brand-emerald" />
+                <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-brand-emerald">
+                  Pricing
+                </span>
+              </div>
+              <h2 className="mt-5 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
                 Transparent Pricing
               </h2>
-              <p className="mt-4 text-[17px] leading-relaxed text-slate-600">
-                We assess your process, design the AI workflow, build and deploy the solution, and continuously optimize its performance. One business process at a time.
+              <p className="mt-5 text-[17px] leading-relaxed text-slate-600">
+                One business process at a time, priced per AI agent — so you know the cost of each automation before it starts.
               </p>
             </div>
 
-            <div className="mt-12 max-w-md mx-auto rounded-3xl bg-white border border-slate-200/70 overflow-hidden">
-              <div className="h-1.5 bg-brand-emerald" />
-              <div className="p-8 text-center">
-                <div className="w-14 h-14 mx-auto rounded-xl flex items-center justify-center" style={{ backgroundColor: "#D7EBC7" }}>
-                  <Bot className="w-6 h-6 text-[#07404B]" strokeWidth={1.9} />
-                </div>
-                <p className="mt-5 font-display text-[19px] font-bold text-brand-dark">Agentic AI Development &amp; Deployment</p>
-                <p className="mt-3 font-display text-3xl font-extrabold text-brand-emerald">
-                  USD 2,000–4,000<span className="text-[15px] font-semibold text-slate-500"> per AI agent</span>
-                </p>
-                <p className="mt-4 text-[13.5px] text-slate-500">
-                  Pricing depends on complexity, integrations, and the business process being automated.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-8 flex justify-center">
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="ai-pricing-cta"
-                className="group inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 transition-all"
+            <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-5 items-stretch">
+              {/* Engagement */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5 }}
+                className="rounded-2xl bg-gradient-to-br from-[#07404B] to-[#0D1F2D] p-7 md:p-8 flex flex-col"
               >
-                Request a Proposal
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-sea">Engagement</p>
+                <p className="mt-2 font-display text-[22px] font-bold text-white leading-snug">
+                  Agentic AI Development &amp; Deployment
+                </p>
+
+                <div className="mt-6 pt-5 border-t border-white/10">
+                  <p className="font-display text-[30px] font-extrabold leading-tight text-white">
+                    USD 2,000–4,000
+                  </p>
+                  <p className="mt-2 text-[13.5px] leading-relaxed text-slate-300">
+                    per AI agent, covering build and deployment
+                  </p>
+                </div>
+
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="ai-pricing-cta"
+                  className="group mt-7 w-fit inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 hover:scale-[1.03] transition-all"
+                >
+                  Request a Proposal
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </motion.div>
+
+              {/* What Moves The Number */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="rounded-2xl bg-[#F7F9FA] border border-slate-200/70 p-7 md:p-8"
+              >
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 pb-5 border-b border-slate-200/70">
+                  What Moves The Number
+                </p>
+                <div>
+                  {PRICE_DRIVERS.map((d, i) => (
+                    <div
+                      key={d.title}
+                      className={`flex items-start justify-between gap-4 py-4 ${
+                        i < PRICE_DRIVERS.length - 1 ? "border-b border-slate-200/70" : ""
+                      }`}
+                    >
+                      <div>
+                        <p className="font-display text-[15px] font-bold text-brand-dark">{d.title}</p>
+                        <p className="mt-1 text-[13px] leading-relaxed text-slate-600">{d.desc}</p>
+                      </div>
+                      <span className="shrink-0 rounded-full border border-brand-emerald/30 text-brand-emerald text-[10.5px] font-semibold uppercase tracking-[0.06em] px-3 py-1">
+                        {d.badge}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="mt-6 pt-5 border-t border-slate-200/70 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                  Included In Every Agent
+                </p>
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {INCLUDED_IN_EVERY_AGENT.map((item, i) => (
+                    <div key={item}>
+                      <p className="text-[11px] font-bold text-brand-emerald">{String(i + 1).padStart(2, "0")}</p>
+                      <p className="mt-1 text-[13px] font-semibold text-brand-dark leading-snug">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </Container>
+        </Section>
+
+        {/* How We Do It */}
+        <Section className="bg-[#F7F9FA]">
+          <Container>
+            <div className="max-w-2xl">
+              <Eyebrow>How We Do It</Eyebrow>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                A Clear Path From Idea To AI In Production.
+              </h2>
+            </div>
+            <div className="mt-14 flex flex-col sm:flex-row sm:items-start gap-8 sm:gap-0">
+              {HOW_WE_DO_IT.map((step, i) => {
+                const isLast = i === HOW_WE_DO_IT.length - 1;
+                return (
+                  <div key={step} className="relative flex-1">
+                    {!isLast && (
+                      <div className="hidden sm:block absolute top-4 left-8 right-0 h-0 border-t-2 border-dashed border-slate-300" />
+                    )}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ type: "spring", stiffness: 400, damping: 22, delay: i * 0.08 }}
+                      className={`relative w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-bold text-white shrink-0 ${
+                        isLast ? "bg-brand-dark" : "bg-brand-emerald"
+                      }`}
+                    >
+                      {i + 1}
+                    </motion.div>
+                    <p className="mt-4 pr-4 text-[14px] leading-snug font-medium text-brand-dark">
+                      {step}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </Container>
         </Section>

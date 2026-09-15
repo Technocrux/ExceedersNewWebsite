@@ -17,7 +17,7 @@ import {
 import { motion } from "framer-motion";
 import {
   CheckCircle2, UserPlus, FileText, Users, Bot, ClipboardCheck, LifeBuoy,
-  GraduationCap, HelpCircle, ArrowRight,
+  GraduationCap, ArrowRight,
 } from "lucide-react";
 
 const WHY_GOOD = [
@@ -84,25 +84,33 @@ const SOLUTION = [
 const PRICING = [
   {
     name: "Permanent Recruitment",
-    price: "USD 4,000 to USD 6,000",
-    unit: "per successful hire",
+    price: "USD 4,000–6,000",
+    unit: "per successful placement",
     desc: "Build long-term internal Project Management capability with carefully selected permanent talent.",
-    icon: UserPlus,
   },
   {
     name: "Contract Staffing",
     price: "Cost + 10%",
-    unit: "",
+    unit: "service fee",
     desc: "Bring in experienced Project Managers for defined periods, projects, or transformation initiatives.",
-    icon: FileText,
   },
   {
     name: "Managed Resources",
     price: "Cost + 20%",
-    unit: "",
+    unit: "service fee",
     desc: "Access Project Managers with additional support from our Project Operations capability.",
-    icon: Users,
+    highlight: true,
   },
+];
+
+const HOW_WE_DO_IT = [
+  "Source candidates",
+  "AI-powered matching",
+  "Method 3-Pulse capability assessment",
+  "Expert interviews",
+  "Pre-deployment training (if required)",
+  "Placement",
+  "30-day operational support",
 ];
 
 const FAQS = [
@@ -148,7 +156,8 @@ export default function HirePlus() {
         <ServiceHero
           eyebrow="HIRE PLUS · For Organizations Building IT Project Teams"
           title="Hire Project Managers Ready to Deliver Results"
-          subtitle="We recruit, assess, train, and support IT Project Managers before and after placement, so they lead successful technology projects from day one instead of learning on the job."
+          subtitle="We recruit, assess, train, and support IT Project Managers before and after placement."
+          subtitleClassName="mt-6 max-w-3xl md:max-w-none md:whitespace-nowrap text-[18px] md:text-[21px] leading-relaxed text-slate-200"
           cta="Request Vetted Candidates"
           ctaHref={CALENDLY_URL}
           testId="hire-hero"
@@ -180,7 +189,7 @@ export default function HirePlus() {
 
                 <div className="mt-7 pt-6 border-t border-slate-200/70">
                   <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-brand-emerald">
-                    How You Engage
+                    Engagement Models
                   </p>
                   <div className="mt-4 flex flex-wrap items-center gap-3">
                     {ENGAGE_MODELS.map((m) => (
@@ -203,7 +212,7 @@ export default function HirePlus() {
         <Section className="bg-[#F7F9FA]">
           <Container>
             <SectionHeading
-              eyebrow="Proof"
+              eyebrow="Proof & Capabilities"
               title="More Than A Decade of Specialized Technology Recruitment"
               subtitle="Trusted by multinational organizations for technology and digital transformation recruitment, backed by a deeper approach to Project Manager selection."
             />
@@ -229,17 +238,19 @@ export default function HirePlus() {
                 </p>
               </div>
               <div className="lg:col-span-7">
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {CHALLENGE_QUESTIONS.map((q) => (
-                    <li key={q} className="flex items-start gap-3 p-4 rounded-xl bg-red-50/60 border border-red-100">
-                      <HelpCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                      <p className="text-[14.5px] leading-relaxed text-slate-700">{q}</p>
+                <p className="text-[15px] font-semibold text-brand-dark">
+                  Finding out after they join is expensive. Ask before you hire:
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {CHALLENGE_QUESTIONS.map((q, i) => (
+                    <li key={q} className="flex items-start gap-3">
+                      <div className="w-7 h-7 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold text-[12px] shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
+                      <p className="text-[15px] leading-relaxed text-slate-700">{q}</p>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-6 text-[15px] font-semibold text-brand-dark">
-                  Finding out after they join is expensive. Hire+ helps you know before you hire.
-                </p>
               </div>
             </div>
           </Container>
@@ -263,11 +274,33 @@ export default function HirePlus() {
         {/* Pricing */}
         <Section className="bg-white" id="pricing">
           <Container>
-            <SectionHeading
-              eyebrow="Pricing"
-              title="Choose the Hiring Model That Works for You"
-            />
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="h-px w-6 bg-brand-emerald" />
+                  <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-brand-emerald">
+                    Pricing
+                  </span>
+                </div>
+                <h2 className="mt-5 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                  Choose the Hiring Model That Works for You
+                </h2>
+              </div>
+              <div className="lg:flex lg:justify-end">
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="hire-pricing-cta"
+                  className="group mt-6 lg:mt-0 inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 hover:scale-[1.03] transition-all"
+                >
+                  Get a Recruitment Proposal
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5">
               {PRICING.map((p, i) => (
                 <motion.div
                   key={p.name}
@@ -277,41 +310,92 @@ export default function HirePlus() {
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   whileHover={{ y: -4 }}
                   data-testid={`hire-pricing-${p.name.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="rounded-2xl bg-white border border-slate-200/70 p-7 flex flex-col hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all"
+                  className={`relative flex flex-col rounded-2xl border p-7 transition-shadow ${
+                    p.highlight
+                      ? "bg-gradient-to-br from-[#07404B] to-[#0D1F2D] border-transparent md:-translate-y-2"
+                      : "bg-[#F7F9FA] border-slate-200/70 hover:shadow-lg hover:shadow-slate-900/5"
+                  }`}
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: "#C7D3EC" }}>
-                    <p.icon className="w-6 h-6 text-[#43669E]" strokeWidth={1.75} />
-                  </div>
-                  <p className="mt-5 font-display text-[19px] font-bold text-brand-dark">{p.name}</p>
-                  <p className="mt-2 font-display text-2xl font-extrabold text-brand-emerald">
-                    {p.price}
-                    {p.unit && <span className="text-[14px] font-semibold text-slate-500"> {p.unit}</span>}
+                  <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${p.highlight ? "text-brand-sea" : "text-slate-500"}`}>
+                    Model {String(i + 1).padStart(2, "0")}
                   </p>
-                  <p className="mt-3 text-[14px] leading-relaxed text-slate-600 flex-1">{p.desc}</p>
+                  <p className={`mt-2 font-display text-[19px] font-bold ${p.highlight ? "text-white" : "text-brand-dark"}`}>
+                    {p.name}
+                  </p>
+
+                  <div className={`mt-5 pt-4 border-t ${p.highlight ? "border-white/10" : "border-slate-200/70"}`}>
+                    <p className={`font-display text-[24px] font-extrabold leading-tight ${p.highlight ? "text-white" : "text-brand-dark"}`}>
+                      {p.price}
+                    </p>
+                    {p.unit && (
+                      <p className={`mt-1 text-[12.5px] ${p.highlight ? "text-slate-400" : "text-slate-500"}`}>
+                        {p.unit === "per successful placement" ? (
+                          <>per successful&nbsp;placement</>
+                        ) : (
+                          p.unit
+                        )}
+                      </p>
+                    )}
+                  </div>
+
+                  <p className={`mt-5 pt-4 border-t text-[13.5px] leading-relaxed flex-1 ${p.highlight ? "border-white/10 text-slate-300" : "border-slate-200/70 text-slate-600"}`}>
+                    {p.desc}
+                  </p>
                 </motion.div>
               ))}
             </div>
 
-            <div className="mt-10 max-w-2xl mx-auto text-center">
+            <div className="mt-10 pt-8 border-t border-slate-200/70 flex flex-wrap items-center gap-x-2 gap-y-1">
               <p className="text-[15px] font-semibold text-brand-dark">
                 Need multiple Project Managers or a tailored model?
               </p>
-              <p className="mt-1 text-[14.5px] text-slate-600">
-                Talk to us about your project requirements.
-              </p>
-            </div>
-
-            <div className="mt-8 flex justify-center">
               <a
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                data-testid="hire-pricing-cta"
-                className="group inline-flex items-center gap-2 rounded-full bg-brand-emerald px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-10px_rgba(5,150,105,0.6)] hover:bg-brand-emerald-hover hover:-translate-y-0.5 transition-all"
+                className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-brand-emerald hover:gap-2.5 transition-all"
               >
-                Get a Recruitment Proposal
+                Talk to us about your project requirements
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
+            </div>
+          </Container>
+        </Section>
+
+        {/* How We Do It */}
+        <Section className="bg-[#F7F9FA]">
+          <Container>
+            <div className="max-w-2xl">
+              <Eyebrow>How We Do It</Eyebrow>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
+                A Clear Path To The Right Project Manager.
+              </h2>
+            </div>
+            <div className="mt-14 flex flex-col sm:flex-row sm:items-start gap-8 sm:gap-0">
+              {HOW_WE_DO_IT.map((step, i) => {
+                const isLast = i === HOW_WE_DO_IT.length - 1;
+                return (
+                  <div key={step} className="relative flex-1">
+                    {!isLast && (
+                      <div className="hidden sm:block absolute top-4 left-8 right-0 h-0 border-t-2 border-dashed border-slate-300" />
+                    )}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ type: "spring", stiffness: 400, damping: 22, delay: i * 0.08 }}
+                      className={`relative w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-bold text-white shrink-0 ${
+                        isLast ? "bg-brand-dark" : "bg-brand-emerald"
+                      }`}
+                    >
+                      {i + 1}
+                    </motion.div>
+                    <p className="mt-4 pr-4 text-[14px] leading-snug font-medium text-brand-dark">
+                      {step}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </Container>
         </Section>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 /** Animated count-up number, triggers once when scrolled into view. */
@@ -30,13 +30,16 @@ export const CountUpNumber = ({ from = 0, to, duration = 1.4, decimals = 0 }) =>
   return <span ref={ref}>{formatted}</span>;
 };
 
-/** Wrapper for full-width sections with consistent padding */
-export const Section = ({ children, className = "", id, dataTestid }) => (
+/** Wrapper for full-width sections with consistent padding. Pass `texture` for a faint dot-pattern watermark. */
+export const Section = ({ children, className = "", id, dataTestid, texture = false }) => (
   <section
     id={id}
     data-testid={dataTestid}
     className={`relative py-20 md:py-28 ${className}`}
   >
+    {texture && (
+      <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" aria-hidden="true" />
+    )}
     {children}
   </section>
 );
@@ -88,7 +91,7 @@ export const SectionHeading = ({
   </div>
 );
 
-/** Service page hero (dark background). Optional visual right slot. */
+/** Service page hero (dark background). Optional visual right slot. Pass `parallax` for scroll-linked background drift. */
 export const ServiceHero = ({
   eyebrow,
   title,
@@ -99,20 +102,28 @@ export const ServiceHero = ({
   visualSlot,
   testId,
   titleClassName = "text-4xl md:text-5xl lg:text-[57px]",
+  subtitleClassName = "mt-6 max-w-3xl text-[18px] md:text-[21px] leading-relaxed text-slate-200",
+  parallax = false,
 }) => {
   const CtaTag = ctaHref ? "a" : "button";
   const ctaProps = ctaHref
     ? { href: ctaHref, target: "_blank", rel: "noopener noreferrer" }
     : { type: "button", onClick: onCtaClick };
 
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const orb1Y = useTransform(scrollYProgress, [0, 1], [0, parallax ? 110 : 0]);
+  const orb2Y = useTransform(scrollYProgress, [0, 1], [0, parallax ? -70 : 0]);
+
   return (
     <section
+      ref={sectionRef}
       data-testid={testId || "service-hero"}
       className="relative pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-br from-[#0D1F2D] via-[#0A1824] to-[#06121B] overflow-hidden"
     >
       {/* Decorative glow */}
-      <div className="absolute -top-24 left-1/4 w-[520px] h-[520px] rounded-full bg-[#07404B] glow-orb" />
-      <div className="absolute bottom-0 right-0 w-[480px] h-[480px] rounded-full bg-brand-emerald/30 glow-orb" />
+      <motion.div style={{ y: orb1Y }} className="absolute -top-24 left-1/4 w-[520px] h-[520px] rounded-full bg-[#07404B] glow-orb" />
+      <motion.div style={{ y: orb2Y }} className="absolute bottom-0 right-0 w-[480px] h-[480px] rounded-full bg-brand-emerald/30 glow-orb" />
       <div className="absolute inset-0 grain-overlay opacity-50" />
       {/* Faint grid */}
       <svg
@@ -157,7 +168,7 @@ export const ServiceHero = ({
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="mt-6 max-w-3xl text-[18px] md:text-[21px] leading-relaxed text-slate-200"
+                className={subtitleClassName}
               >
                 {subtitle}
               </motion.p>
@@ -201,16 +212,17 @@ export const DifferenceMeansSection = ({
   quoteDesc,
   meansEyebrow = "What This Means For You",
   meansItems,
+  rightSlot,
   testId,
 }) => (
   <Section
     className="bg-gradient-to-br from-[#07404B] to-[#0D1F2D] relative overflow-hidden"
     dataTestid={testId}
   >
-    <div className="absolute -top-20 -right-16 w-[360px] h-[360px] rounded-full bg-brand-emerald/30 glow-orb" />
-    <div className="absolute -bottom-20 -left-16 w-[320px] h-[320px] rounded-full bg-brand-sea/20 glow-orb" />
+    <div className="absolute -top-20 -right-16 w-[360px] h-[360px] rounded-full bg-brand-emerald/30 glow-orb glow-orb-float" />
+    <div className="absolute -bottom-20 -left-16 w-[320px] h-[320px] rounded-full bg-brand-sea/20 glow-orb glow-orb-float" style={{ animationDelay: "-7s" }} />
     <Container>
-      <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+      <div className={`relative grid grid-cols-1 gap-12 lg:gap-16 ${rightSlot ? "items-center" : "items-stretch"} ${(meansItems || rightSlot) ? "lg:grid-cols-2" : "lg:grid-cols-1"}`}>
         <div className="lg:pr-6">
           <div className="flex items-center gap-3">
             <span className="h-px w-6 bg-brand-sea" />
@@ -266,34 +278,38 @@ export const DifferenceMeansSection = ({
           )}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="h-full flex flex-col rounded-3xl border border-white/10 bg-white/[0.04] p-7 md:p-8"
-        >
-          <p className="pb-5 border-b border-white/10 text-[12px] font-semibold uppercase tracking-[0.2em] text-brand-sea">
-            {meansEyebrow}
-          </p>
-          <div className="flex-1 flex flex-col justify-center">
-            {meansItems.map((item, i) => (
-              <div
-                key={item.title}
-                className={`flex items-center gap-4 py-4 ${
-                  i !== meansItems.length - 1 ? "border-b border-white/10" : "pb-0"
-                }`}
-              >
-                <div className="w-10 h-10 rounded-xl bg-brand-emerald/10 border border-brand-emerald/25 flex items-center justify-center shrink-0">
-                  <item.Icon className="w-[18px] h-[18px] text-brand-sea" strokeWidth={1.9} />
+        {rightSlot ? (
+          rightSlot
+        ) : meansItems ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5 }}
+            className="h-full flex flex-col rounded-3xl border border-white/10 bg-white/[0.04] p-7 md:p-8"
+          >
+            <p className="pb-5 border-b border-white/10 text-[12px] font-semibold uppercase tracking-[0.2em] text-brand-sea">
+              {meansEyebrow}
+            </p>
+            <div className="flex-1 flex flex-col justify-center">
+              {meansItems.map((item, i) => (
+                <div
+                  key={item.title}
+                  className={`flex items-center gap-4 py-4 ${
+                    i !== meansItems.length - 1 ? "border-b border-white/10" : "pb-0"
+                  }`}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-brand-emerald/10 border border-brand-emerald/25 flex items-center justify-center shrink-0">
+                    <item.Icon className="w-[18px] h-[18px] text-brand-sea" strokeWidth={1.9} />
+                  </div>
+                  <p className="font-display text-[16px] font-bold text-white leading-snug">
+                    {item.title}
+                  </p>
                 </div>
-                <p className="font-display text-[16px] font-bold text-white leading-snug">
-                  {item.title}
-                </p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        ) : null}
       </div>
     </Container>
   </Section>
