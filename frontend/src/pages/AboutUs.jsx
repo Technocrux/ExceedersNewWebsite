@@ -22,7 +22,7 @@ import {
 
 const CREDIBILITY = [
   { id: "years", value: 10, suffix: "+", label: "Years", desc: "of Gulf IT experience", Icon: Calendar, color: "#059669", tint: "bg-brand-emerald/10" },
-  { id: "providers", value: 400, suffix: "+", label: "Providers", desc: "trusted technology partners", Icon: Handshake, color: "#43669E", tint: "bg-[#43669E]/10" },
+  { id: "providers", value: 600, suffix: "+", label: "Providers", desc: "trusted technology partners", Icon: Handshake, color: "#43669E", tint: "bg-[#43669E]/10" },
   { id: "clients", value: 900, suffix: "+", label: "Clients", desc: "supported across the Gulf", Icon: Users, color: "#07404B", tint: "bg-brand-pine/10" },
   { id: "ecosystem", text: "One Ecosystem", label: "Ecosystem", desc: "for IT leadership & delivery", Icon: Layers, color: "#8B5CA8", tint: "bg-[#8B5CA8]/10" },
 ];
