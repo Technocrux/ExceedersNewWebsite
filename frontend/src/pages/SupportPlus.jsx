@@ -136,8 +136,17 @@ export default function SupportPlus() {
               ))}
             </div>
 
+            {/* Trusted By logos */}
+            <div className="mt-12 relative mask-fade-x overflow-hidden">
+              <div className="flex w-max animate-marquee items-center gap-2">
+                {[...LOGOS, ...LOGOS].map((logo, i) => (
+                  <LogoBadge key={`${logo.name}-${i}`} name={logo.name} src={logo.src} />
+                ))}
+              </div>
+            </div>
+
             {/* What This Means For You */}
-            <div className="relative mt-14 rounded-3xl bg-gradient-to-br from-[#07404B] to-[#0D1F2D] p-8 md:p-10 overflow-hidden">
+            <div className="relative mt-12 rounded-3xl bg-gradient-to-br from-[#07404B] to-[#0D1F2D] p-8 md:p-10 overflow-hidden">
               <div className="absolute -top-16 -right-10 w-64 h-64 rounded-full bg-brand-emerald/25 blur-3xl pointer-events-none" />
               <div className="absolute -bottom-24 -left-10 w-56 h-56 rounded-full bg-brand-sea/10 blur-3xl pointer-events-none" />
               <div className="relative flex items-center gap-2.5">
@@ -166,15 +175,6 @@ export default function SupportPlus() {
                       {item.title}
                     </p>
                   </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Trusted By logos */}
-            <div className="mt-12 relative mask-fade-x overflow-hidden">
-              <div className="flex w-max animate-marquee items-center gap-2">
-                {[...LOGOS, ...LOGOS].map((logo, i) => (
-                  <LogoBadge key={`${logo.name}-${i}`} name={logo.name} src={logo.src} />
                 ))}
               </div>
             </div>

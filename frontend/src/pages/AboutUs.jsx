@@ -11,7 +11,7 @@ import {
   ServiceFinalCTA,
   Eyebrow,
 } from "@/components/service/ServicePrimitives";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CountUp from "@/components/CountUp";
@@ -65,25 +65,22 @@ function EcosystemSpotlight() {
       <div className="absolute -top-16 -right-10 w-56 h-56 rounded-full bg-brand-emerald/20 blur-3xl pointer-events-none" />
       <div className="absolute inset-0 dot-pattern opacity-[0.08] pointer-events-none" aria-hidden="true" />
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={active.label}
-          initial={{ opacity: 0, scale: 0.5, y: 18 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.6, y: -18 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="relative flex flex-col items-center text-center px-8"
+      <motion.div
+        key={active.label}
+        initial={{ opacity: 0, scale: 0.5, y: 18 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        className="relative flex flex-col items-center text-center px-8"
+      >
+        <div
+          className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg"
+          style={{ backgroundColor: active.iconBg }}
         >
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg"
-            style={{ backgroundColor: active.iconBg }}
-          >
-            <active.icon className="w-7 h-7" style={{ color: active.color }} strokeWidth={1.8} />
-          </div>
-          <p className="mt-5 font-display text-2xl font-bold text-white">{active.label}</p>
-          <p className="mt-2 text-[13.5px] text-slate-300 max-w-[240px] leading-relaxed">{active.tagline}</p>
-        </motion.div>
-      </AnimatePresence>
+          <active.icon className="w-7 h-7" style={{ color: active.color }} strokeWidth={1.8} />
+        </div>
+        <p className="mt-5 font-display text-2xl font-bold text-white">{active.label}</p>
+        <p className="mt-2 text-[13.5px] text-slate-300 max-w-[240px] leading-relaxed">{active.tagline}</p>
+      </motion.div>
 
       <div className="relative mt-9 flex items-center gap-2">
         {HERO_CAPABILITIES.map((c, i) => (
