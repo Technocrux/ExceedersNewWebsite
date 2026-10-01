@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,12 +10,21 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Manrope', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-family: 'Manrope', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #ffffff;
     color: #0D1F2D;
     font-feature-settings: "ss01", "cv11";
+}
+
+/* Arabic script: tracking breaks letter joining, and tight leading clips marks. */
+[lang="ar"] [class] {
+    letter-spacing: normal;
+}
+
+[lang="ar"] h1 {
+    line-height: 1.4;
 }
 
 code {

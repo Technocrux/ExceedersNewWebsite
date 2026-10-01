@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Compass, Users, Bot, ShieldCheck, ArrowRight, TrendingDown, FolderCheck, Building2, CheckCircle2, Zap, Layers,
-  Star, Menu, Plus, Search, Sparkles, Newspaper, ShoppingBag, ClipboardList, Calendar, User,
+  Star, User,
 } from "lucide-react";
 
 const PROOF = [
@@ -43,17 +43,28 @@ const WHAT_IT_MEANS = [
   },
 ];
 
-const PLATFORM_REQUESTS = [
-  { category: "Employee Contract Signing", title: "Employee Contract Signing", by: "Nadia Karim", date: "8 Sep 2026", ref: "NUM21698", status: "Pending", accent: "#17A67B" },
-  { category: "Employee Services", title: "Employee Letters Inquiry", by: "Omar Haddad", date: "10 Sep 2026", ref: "NUM21697", status: "Approved", accent: "#17A67B" },
-  { category: "Employee Services", title: "Insurance Inquiry", by: "Sara Nassif", date: "12 Sep 2026", ref: "NUM21701", status: "In review", accent: "#4EBC96" },
+const DASH_CARD_SHADOW = "0 2px 10px rgba(12,40,34,0.07)";
+
+const DASH_BARS = [
+  { month: "Mar", h: 46, color: "#d7ece3" },
+  { month: "Apr", h: 58, color: "#d7ece3" },
+  { month: "May", h: 40, color: "#d7ece3" },
+  { month: "Jun", h: 68, color: "#a9dcc7" },
+  { month: "Jul", h: 55, color: "#a9dcc7" },
+  { month: "Aug", h: 82, color: "#17976a" },
+  { month: "Sep", h: 100, color: "#17976a" },
 ];
 
-const STATUS_STYLES = {
-  Pending: { bg: "#FFF5E6", text: "#8A5A10", dot: "#D9932B" },
-  Approved: { bg: "#E8F7F1", text: "#0F7F5E", dot: "#17A67B" },
-  "In review": { bg: "#F1F5F4", text: "#3F5A55", dot: "#4EBC96" },
-};
+const DASH_KPIS = [
+  { label: "Cost saved", value: "$1.24M", delta: "▲ 12% vs Q2" },
+  { label: "Avg resolution", value: "3h 12m", delta: "▼ 38m faster" },
+];
+
+const DASH_VENDORS = [
+  { label: "Cloud & Infra", pct: 42, color: "#17976a" },
+  { label: "Workplace", pct: 31, color: "#3fb98a" },
+  { label: "Security", pct: 27, color: "#8ad3b6" },
+];
 
 const CHALLENGES = [
   "Choosing the right technology",
@@ -483,135 +494,117 @@ export default function CIOPlus() {
               transition={{ duration: 0.6 }}
               className="flex items-center justify-center"
             >
-              {/* Phone frame */}
-              <div className="relative w-[210px] shrink-0 rounded-[34px] p-[5px] shadow-2xl shadow-black/50" style={{ background: "linear-gradient(160deg, #2c3a3b 0%, #0e1b1c 55%, #29383a 100%)" }}>
-                <div className="relative w-full h-[448px] rounded-[29px] overflow-hidden bg-[#f6f8f8] flex flex-col">
-                  {/* Dynamic island */}
-                  <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-[52px] h-4 rounded-full bg-[#0b1516] z-10" />
-
-                  {/* Green header */}
-                  <div className="relative shrink-0 rounded-b-[16px]" style={{ background: "linear-gradient(160deg, #17A67B 0%, #13946D 100%)" }}>
-                    <div className="flex items-center justify-between px-3.5 pt-2 text-white text-[9px] font-semibold">
-                      <span>9:41</span>
-                      <div className="flex items-center gap-1">
-                        <div className="flex items-end gap-[1.5px] h-[9px]">
-                          <span className="w-[2px] h-[35%] bg-white rounded-sm" />
-                          <span className="w-[2px] h-[55%] bg-white rounded-sm" />
-                          <span className="w-[2px] h-[75%] bg-white rounded-sm" />
-                          <span className="w-[2px] h-[100%] bg-white rounded-sm" />
-                        </div>
-                        <div className="w-3.5 h-2 border border-white/75 rounded-[2px] relative">
-                          <div className="absolute inset-[1px] bg-white rounded-[1px] w-[70%]" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between gap-2 px-3.5 pt-2 pb-3">
-                      <img
-                        src="/assets/brand/exceeders-mark.png"
-                        alt=""
-                        className="w-5 h-5 shrink-0"
-                        style={{ filter: "brightness(0) invert(1)", opacity: 0.95 }}
-                      />
-                      <p className="font-display text-white text-[13.5px] font-bold">Requests</p>
-                      <div className="w-[22px] h-[22px] rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                        <Sparkles className="w-3 h-3 text-white" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Tabs */}
-                  <div className="shrink-0 flex px-3 bg-white border-b border-slate-100">
-                    <span className="flex-1 text-center pt-2.5 pb-2 text-[10px] font-medium text-slate-500">Actions</span>
-                    <span className="flex-1 text-center pt-2.5 pb-2 text-[10px] font-medium text-slate-500">Mine</span>
-                    <span className="flex-1 text-center pt-2.5 pb-2 text-[10px] font-bold text-[#17A67B] border-b-2 border-[#17A67B] -mb-px">All</span>
-                  </div>
-
-                  <div className="shrink-0 px-3.5 pt-2.5 pb-1.5 bg-[#f6f8f8]">
-                    <div className="flex items-center gap-2">
-                      <div className="flex-1 flex items-center gap-1.5 bg-white border border-slate-200 rounded-[10px] px-2.5 py-2">
-                        <Search className="w-2.5 h-2.5 text-slate-400 shrink-0" />
-                        <span className="text-[9.5px] text-slate-500">Search</span>
-                      </div>
-                      <div className="w-[30px] h-[30px] rounded-[10px] bg-white border border-slate-200 flex items-center justify-center shrink-0">
-                        <Menu className="w-3 h-3 text-slate-600" />
-                      </div>
-                    </div>
-                    <div className="mt-2 flex items-center gap-1.5 text-[9px] text-slate-500">
-                      <motion.span
-                        animate={{ opacity: [1, 0.35, 1] }}
-                        transition={{ duration: 2.2, repeat: Infinity }}
-                        className="w-1.5 h-1.5 rounded-full bg-[#17A67B] shrink-0"
-                      />
-                      17,063 requests · 3 need you
-                    </div>
-                  </div>
-
-                  {/* Request list */}
-                  <div className="relative flex-1 px-3.5 pb-3 bg-[#f6f8f8] flex flex-col gap-1.5 overflow-hidden">
-                    {PLATFORM_REQUESTS.map((r, i) => {
-                      const s = STATUS_STYLES[r.status];
-                      return (
-                        <motion.div
-                          key={r.ref}
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, margin: "-80px" }}
-                          transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                          className="relative rounded-xl bg-white border border-slate-100 p-2.5 overflow-hidden"
-                        >
-                          <span className="absolute left-0 top-0 bottom-0 w-[2.5px]" style={{ backgroundColor: r.accent }} />
-                          <p className="text-[7px] font-semibold uppercase tracking-wide text-slate-400 truncate">{r.category}</p>
-                          <p className="mt-0.5 text-[10.5px] font-bold text-[#102b26] leading-tight">{r.title}</p>
-                          <div className="mt-1.5 flex items-end justify-between gap-2">
-                            <p className="text-[8px] text-[#3f5a55] leading-snug">
-                              <span className="text-slate-400">By</span> {r.by}
-                              <br />
-                              <span className="text-slate-400">Ref</span> {r.ref}
-                            </p>
-                            <span
-                              className="shrink-0 inline-flex items-center gap-1 rounded-full text-[7.5px] font-semibold px-1.5 py-[3px]"
-                              style={{ backgroundColor: s.bg, color: s.text }}
-                            >
-                              <span className="w-1 h-1 rounded-full" style={{ backgroundColor: s.dot }} />
-                              {r.status}
-                            </span>
+              {/* Phone frame: drawn at 300px wide, scaled to 70% so it occupies 210x458 */}
+              <div className="w-[210px] h-[458px] shrink-0">
+                <div
+                  className="w-[300px] origin-top-left scale-[0.7] rounded-[48px] bg-[#0a1614] p-[7px]"
+                  style={{ boxShadow: "0 40px 90px rgba(0,0,0,0.5), 0 0 0 1px rgba(234,245,242,0.08)" }}
+                >
+                  <div className="relative h-[640px] rounded-[41px] overflow-hidden bg-[#f6f8f7] flex flex-col">
+                    {/* Green header */}
+                    <div className="shrink-0 bg-[#17976a] text-white px-5 pt-3 pb-4 flex flex-col gap-3.5">
+                      <div className="flex items-center justify-between text-[13px] font-semibold">
+                        <span>9:41</span>
+                        <div className="w-[74px] h-[22px] rounded-full bg-[#0a1614] -mt-1" />
+                        <div className="flex items-center gap-1.5">
+                          <div className="flex items-end gap-[2px] h-[10px]">
+                            <span className="w-[3px] h-[40%] bg-white rounded-sm" />
+                            <span className="w-[3px] h-[65%] bg-white rounded-sm" />
+                            <span className="w-[3px] h-[100%] bg-white rounded-sm" />
                           </div>
-                        </motion.div>
-                      );
-                    })}
-
-                    {/* FAB */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.6 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true, margin: "-80px" }}
-                      transition={{ duration: 0.4, delay: 0.7, type: "spring", stiffness: 300, damping: 20 }}
-                      className="absolute bottom-2 right-3 w-8 h-8 rounded-[11px] flex items-center justify-center shadow-lg"
-                      style={{ backgroundColor: "#17A67B", boxShadow: "0 10px 20px -8px rgba(23,166,123,.8)" }}
-                    >
-                      <Plus className="w-4 h-4 text-white" />
-                    </motion.div>
-                  </div>
-
-                  {/* Bottom tab bar */}
-                  <div className="shrink-0 bg-white border-t border-slate-100 px-2 pt-2 pb-1.5">
-                    <div className="grid grid-cols-5">
-                      {[
-                        { label: "News", Icon: Newspaper },
-                        { label: "Market", Icon: ShoppingBag },
-                        { label: "Requests", Icon: ClipboardList },
-                        { label: "Events", Icon: Calendar },
-                        { label: "Profile", Icon: User },
-                      ].map(({ label, Icon }) => (
-                        <div key={label} className="flex flex-col items-center gap-1">
-                          <Icon className="w-3 h-3" style={{ color: label === "Requests" ? "#17A67B" : "#5c6f73" }} strokeWidth={label === "Requests" ? 2.3 : 1.8} />
-                          <span className="text-[6.5px] font-medium" style={{ color: label === "Requests" ? "#17A67B" : "#5c6f73", fontWeight: label === "Requests" ? 700 : 500 }}>
-                            {label}
-                          </span>
+                          <div className="w-[18px] h-[9px] border border-white/75 rounded-[3px] relative">
+                            <div className="absolute inset-[1px] bg-white rounded-[1px] w-[70%]" />
+                          </div>
                         </div>
-                      ))}
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="w-[30px] h-[30px] rounded-[9px] bg-white/[0.18] flex items-center justify-center">
+                          <img
+                            src="/assets/brand/exceeders-mark.png"
+                            alt=""
+                            className="w-[18px] h-[18px]"
+                            style={{ filter: "brightness(0) invert(1)", opacity: 0.95 }}
+                          />
+                        </div>
+                        <p className="font-display text-[19px] font-semibold">Dashboard</p>
+                        <div className="w-[30px] h-[30px] rounded-full bg-white/20 flex items-center justify-center">
+                          <User className="w-4 h-4 text-white" />
+                        </div>
+                      </div>
+                      <div className="flex gap-2 text-[12px]">
+                        <span className="px-[13px] py-1.5 rounded-full bg-white text-[#0f5f45] font-semibold">This month</span>
+                        <span className="px-[13px] py-1.5 rounded-full bg-white/[0.16] text-white/90">Quarter</span>
+                        <span className="px-[13px] py-1.5 rounded-full bg-white/[0.16] text-white/90">Year</span>
+                      </div>
                     </div>
-                    <div className="w-16 h-1 rounded-full bg-[#0e1b1c] opacity-25 mx-auto mt-2" />
+
+                    <div className="p-4 flex flex-col gap-[13px] overflow-hidden">
+                      {/* Service performance */}
+                      <div className="bg-white rounded-2xl p-[15px] flex flex-col gap-2.5" style={{ boxShadow: DASH_CARD_SHADOW }}>
+                        <div className="flex items-baseline justify-between text-[10.5px] font-semibold">
+                          <span className="uppercase tracking-[0.1em] text-[#6b8b83]">Service Performance</span>
+                          <span className="text-[#17976a]">+4.2%</span>
+                        </div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-[30px] font-bold text-[#10302a] tracking-[-0.02em] leading-none">98.6%</span>
+                          <span className="text-[11.5px] text-[#6b8b83]">SLA met</span>
+                        </div>
+                        <div className="flex items-end gap-1.5 h-[62px]">
+                          {DASH_BARS.map((b, i) => (
+                            <motion.div
+                              key={b.month}
+                              initial={{ height: 0 }}
+                              whileInView={{ height: `${b.h}%` }}
+                              viewport={{ once: true, margin: "-80px" }}
+                              transition={{ duration: 0.5, delay: 0.2 + i * 0.06, ease: "easeOut" }}
+                              className="flex-1 rounded"
+                              style={{ backgroundColor: b.color }}
+                            />
+                          ))}
+                        </div>
+                        <div className="flex justify-between text-[9.5px] text-[#9ab3ac]">
+                          {DASH_BARS.map((b) => (
+                            <span key={b.month}>{b.month}</span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* KPI tiles */}
+                      <div className="grid grid-cols-2 gap-[11px]">
+                        {DASH_KPIS.map((k) => (
+                          <div key={k.label} className="bg-white rounded-[14px] p-[13px] flex flex-col gap-[5px]" style={{ boxShadow: DASH_CARD_SHADOW }}>
+                            <span className="text-[9.5px] font-semibold uppercase tracking-[0.08em] text-[#6b8b83]">{k.label}</span>
+                            <span className="text-[20px] font-bold text-[#10302a] leading-tight">{k.value}</span>
+                            <span className="text-[10.5px] font-semibold text-[#17976a]">{k.delta}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Workload by vendor */}
+                      <div className="bg-white rounded-2xl p-[15px] flex flex-col gap-3" style={{ boxShadow: DASH_CARD_SHADOW }}>
+                        <span className="text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#6b8b83]">Workload by vendor</span>
+                        <div className="flex flex-col gap-[11px]">
+                          {DASH_VENDORS.map((v, i) => (
+                            <div key={v.label} className="flex flex-col gap-[5px]">
+                              <div className="flex justify-between text-[12px] text-[#10302a]">
+                                <span>{v.label}</span>
+                                <span className="font-semibold">{v.pct}%</span>
+                              </div>
+                              <div className="h-1.5 rounded-full bg-[#e7efec]">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: `${v.pct}%` }}
+                                  viewport={{ once: true, margin: "-80px" }}
+                                  transition={{ duration: 0.7, delay: 0.4 + i * 0.1, ease: "easeOut" }}
+                                  className="h-1.5 rounded-full"
+                                  style={{ backgroundColor: v.color }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

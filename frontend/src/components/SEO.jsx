@@ -10,6 +10,7 @@ import { ORG, absUrl } from "@/seo/config";
  *  - jsonLd: object | array of objects → serialized as one or more <script type="application/ld+json">
  *  - image: fully-qualified OG image URL (optional; defaults to org OG image)
  *  - ogType: "website" | "article" | ... (default "website")
+ *  - ogLocale: Open Graph locale (default "en_US")
  */
 export default function SEO({
   title,
@@ -19,6 +20,7 @@ export default function SEO({
   jsonLd,
   image = ORG.ogImage,
   ogType = "website",
+  ogLocale = "en_US",
 }) {
   const url = absUrl(path);
   const jsonLdArray = jsonLd
@@ -41,7 +43,7 @@ export default function SEO({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
-      <meta property="og:locale" content="en_US" />
+      <meta property="og:locale" content={ogLocale} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

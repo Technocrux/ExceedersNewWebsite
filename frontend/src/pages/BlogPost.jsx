@@ -1,15 +1,32 @@
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, useSearchParams, Navigate, Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
-import { CALENDLY_URL } from "@/seo/config";
 import { blogPostingLd } from "@/seo/jsonld";
-import { Section, Container, ServiceFinalCTA } from "@/components/service/ServicePrimitives";
+import { Section, Container } from "@/components/service/ServicePrimitives";
 import { getBlogPost } from "@/data/blogPosts";
 
-const formatDate = (iso) =>
-  new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+// Per-language page chrome. A post opts into a language via `translations.<lang>`.
+const LANGS = {
+  en: { label: "English", dir: "ltr", locale: "en-US", ogLocale: "en_US", back: "Back to Resources" },
+  ar: { label: "العربية", dir: "rtl", locale: "ar-u-nu-latn", ogLocale: "ar_AR", back: "العودة إلى المصادر" },
+};
+
+const formatDate = (iso, locale) =>
+  new Date(iso).toLocaleDateString(locale, { year: "numeric", month: "long", day: "numeric" });
+
+// Renders `**bold**` spans inside block text.
+const RichText = ({ text }) =>
+  text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={i} className="font-semibold text-brand-dark">
+        {part.slice(2, -2)}
+      </strong>
+    ) : (
+      part
+    )
+  );
 
 const Block = ({ block }) => {
   if (block.type === "h2") {
@@ -19,12 +36,19 @@ const Block = ({ block }) => {
       </h2>
     );
   }
+  if (block.type === "h3") {
+    return (
+      <h3 className="mt-8 font-display text-[18px] md:text-[19px] font-bold text-brand-dark tracking-tight">
+        {block.text}
+      </h3>
+    );
+  }
   if (block.type === "ul") {
     return (
-      <ul className="mt-4 space-y-2 list-disc pl-5">
+      <ul className="mt-4 space-y-2 list-disc ps-5">
         {block.items.map((item) => (
           <li key={item} className="text-[16px] leading-relaxed text-slate-700">
-            {item}
+            <RichText text={item} />
           </li>
         ))}
       </ul>
@@ -32,10 +56,10 @@ const Block = ({ block }) => {
   }
   if (block.type === "ol") {
     return (
-      <ol className="mt-4 space-y-2 list-decimal pl-5">
+      <ol className="mt-4 space-y-2 list-decimal ps-5">
         {block.items.map((item) => (
           <li key={item} className="text-[16px] leading-relaxed text-slate-700">
-            {item}
+            <RichText text={item} />
           </li>
         ))}
       </ol>
@@ -44,7 +68,7 @@ const Block = ({ block }) => {
   if (block.type === "link") {
     return (
       <p className="mt-4 text-[16px] leading-[1.75] text-slate-700">
-        {block.text}{" "}
+        <RichText text={block.text} />{" "}
         <a
           href={block.href}
           target="_blank"
@@ -56,13 +80,30 @@ const Block = ({ block }) => {
       </p>
     );
   }
+  if (block.type === "cta") {
+    return (
+      <p className="mt-5">
+        <a
+          href={block.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[16px] font-semibold text-brand-emerald underline decoration-brand-emerald/30 underline-offset-2 hover:decoration-brand-emerald transition-colors"
+        >
+          {block.linkText}
+        </a>
+      </p>
+    );
+  }
   return (
-    <p className="mt-4 text-[16px] leading-[1.75] text-slate-700">{block.text}</p>
+    <p className="mt-4 text-[16px] leading-[1.75] text-slate-700">
+      <RichText text={block.text} />
+    </p>
   );
 };
 
 export default function BlogPost() {
   const { slug } = useParams();
+  const [searchParams] = useSearchParams();
   const post = getBlogPost(slug);
 
   if (!post) {
@@ -70,19 +111,24 @@ export default function BlogPost() {
   }
 
   const path = `/resources/blog/${post.slug}`;
+  const langs = ["en", ...Object.keys(post.translations || {})];
+  const lang = langs.includes(searchParams.get("lang")) ? searchParams.get("lang") : "en";
+  const ui = LANGS[lang];
+  const content = lang === "en" ? post : { ...post, ...post.translations[lang] };
 
   return (
     <div className="min-h-screen bg-white" data-testid="blog-post-page">
       <SEO
-        title={`${post.title} | eXceeders`}
-        description={post.excerpt}
+        title={`${content.title} | eXceeders`}
+        description={content.excerpt}
         path={path}
         robots="index, follow"
         ogType="article"
+        ogLocale={ui.ogLocale}
         jsonLd={blogPostingLd({
           path,
-          title: post.title,
-          description: post.excerpt,
+          title: content.title,
+          description: content.excerpt,
           datePublished: post.date,
         })}
       />
@@ -90,50 +136,67 @@ export default function BlogPost() {
       <main>
         <Section className="bg-white pt-28 md:pt-32">
           <Container>
-            <div className="max-w-3xl mx-auto">
-              <Link
-                to="/resources"
-                data-testid="blog-back-link"
-                className="inline-flex items-center gap-2 text-[14px] font-semibold text-slate-500 hover:text-brand-emerald transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Resources
-              </Link>
+            <div className="max-w-3xl mx-auto" dir={ui.dir} lang={lang}>
+              <div className="flex items-center justify-between gap-4">
+                <Link
+                  to={post.kind === "guide" ? "/resources?tab=guide" : "/resources"}
+                  data-testid="blog-back-link"
+                  className="inline-flex items-center gap-2 text-[14px] font-semibold text-slate-500 hover:text-brand-emerald transition-colors"
+                >
+                  <ArrowLeft className="w-4 h-4 rtl:rotate-180" />
+                  {ui.back}
+                </Link>
+
+                {langs.length > 1 && (
+                  <div
+                    className="inline-flex rounded-full border border-slate-200 p-0.5 text-[13px] font-semibold"
+                    data-testid="blog-lang-switch"
+                  >
+                    {langs.map((code) => (
+                      <Link
+                        key={code}
+                        to={code === "en" ? path : `${path}?lang=${code}`}
+                        replace
+                        lang={code}
+                        aria-current={code === lang ? "true" : undefined}
+                        data-testid={`blog-lang-${code}`}
+                        className={`rounded-full px-3.5 py-1 transition-colors ${
+                          code === lang ? "bg-brand-emerald text-white" : "text-slate-500 hover:text-brand-emerald"
+                        }`}
+                      >
+                        {LANGS[code].label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-emerald">
-                {post.category}
+                {content.category}
               </p>
               <h1 className="mt-3 font-display text-3xl md:text-4xl lg:text-[44px] font-extrabold text-brand-dark leading-[1.1] tracking-tight">
-                {post.title}
+                {content.title}
               </h1>
 
               <div className="mt-6 flex items-center gap-5 text-[13.5px] text-slate-500 pb-8 border-b border-slate-200">
                 <span className="inline-flex items-center gap-1.5">
                   <Calendar className="w-4 h-4" />
-                  {formatDate(post.date)}
+                  {formatDate(post.date, ui.locale)}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Clock className="w-4 h-4" />
-                  {post.readTime}
+                  {content.readTime}
                 </span>
               </div>
 
               <article data-testid="blog-post-body">
-                {post.body.map((block, i) => (
+                {content.body.map((block, i) => (
                   <Block key={i} block={block} />
                 ))}
               </article>
             </div>
           </Container>
         </Section>
-
-        <ServiceFinalCTA
-          eyebrow="Hiring the right IT talent"
-          title="Reduce the uncertainty in your next IT hire."
-          subtitle="Professionals+ combines specialized IT recruiters, AI-powered matching, and technical screening to help you hire qualified professionals faster."
-          cta="Request Qualified Candidates"
-          ctaHref={CALENDLY_URL}
-        />
       </main>
       <Footer />
     </div>

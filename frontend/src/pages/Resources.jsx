@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, Clock, Newspaper } from "lucide-react";
+import { ArrowRight, BookOpen, Calendar, Clock, Newspaper } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
@@ -10,14 +9,24 @@ import { webPageLd } from "@/seo/jsonld";
 import { Section, Container, Eyebrow } from "@/components/service/ServicePrimitives";
 import { BLOG_POSTS } from "@/data/blogPosts";
 
-const TABS = [{ id: "blog", label: "Blog" }];
+const TABS = [
+  { id: "blog", label: "Blog", icon: Newspaper },
+  { id: "guide", label: "Guide", icon: BookOpen },
+];
+
+// Newest first; ISO dates sort lexically.
+const postsFor = (kind) =>
+  BLOG_POSTS.filter((p) => (p.kind || "blog") === kind).sort((a, b) => b.date.localeCompare(a.date));
 
 const formatDate = (iso) =>
   new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
 export default function Resources() {
   const meta = PAGE_META.resources;
-  const [activeTab, setActiveTab] = useState("blog");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = TABS.some((t) => t.id === searchParams.get("tab")) ? searchParams.get("tab") : "blog";
+  const setActiveTab = (id) => setSearchParams(id === "blog" ? {} : { tab: id }, { replace: true });
+  const TabIcon = TABS.find((t) => t.id === activeTab).icon;
 
   return (
     <div className="min-h-screen bg-white" data-testid="resources-page">
@@ -77,52 +86,54 @@ export default function Resources() {
               ))}
             </div>
 
-            {activeTab === "blog" && (
-              <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="resources-blog-grid">
-                {BLOG_POSTS.map((post, i) => (
-                  <motion.div
-                    key={post.slug}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.5, delay: i * 0.06 }}
+            <div
+              key={activeTab}
+              className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              data-testid={`resources-${activeTab}-grid`}
+            >
+              {postsFor(activeTab).map((post, i) => (
+                <motion.div
+                  key={post.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                >
+                  <Link
+                    to={`/resources/blog/${post.slug}`}
+                    data-testid={`blog-card-${post.slug}`}
+                    className="group flex flex-col h-full rounded-2xl bg-white border border-slate-200/70 p-7 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 hover:-translate-y-1 transition-all"
                   >
-                    <Link
-                      to={`/resources/blog/${post.slug}`}
-                      data-testid={`blog-card-${post.slug}`}
-                      className="group flex flex-col h-full rounded-2xl bg-white border border-slate-200/70 p-7 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 hover:-translate-y-1 transition-all"
-                    >
-                      <div className="w-11 h-11 rounded-xl bg-brand-pistachio/50 flex items-center justify-center">
-                        <Newspaper className="w-5 h-5 text-brand-emerald" strokeWidth={1.9} />
-                      </div>
-                      <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-emerald">
-                        {post.category}
-                      </p>
-                      <h3 className="mt-2 font-display text-[19px] font-bold text-brand-dark leading-tight group-hover:text-brand-emerald transition-colors">
-                        {post.title}
-                      </h3>
-                      <p className="mt-3 text-[14px] leading-relaxed text-slate-600 flex-1">
-                        {post.excerpt}
-                      </p>
-                      <div className="mt-6 flex items-center gap-4 text-[12.5px] text-slate-500">
-                        <span className="inline-flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5" />
-                          {formatDate(post.date)}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5">
-                          <Clock className="w-3.5 h-3.5" />
-                          {post.readTime}
-                        </span>
-                      </div>
-                      <span className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-brand-emerald group-hover:gap-3 transition-all">
-                        Read article
-                        <ArrowRight className="w-4 h-4" />
+                    <div className="w-11 h-11 rounded-xl bg-brand-pistachio/50 flex items-center justify-center">
+                      <TabIcon className="w-5 h-5 text-brand-emerald" strokeWidth={1.9} />
+                    </div>
+                    <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-emerald">
+                      {post.category}
+                    </p>
+                    <h3 className="mt-2 font-display text-[19px] font-bold text-brand-dark leading-tight group-hover:text-brand-emerald transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="mt-3 text-[14px] leading-relaxed text-slate-600 flex-1">
+                      {post.excerpt}
+                    </p>
+                    <div className="mt-6 flex items-center gap-4 text-[12.5px] text-slate-500">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5" />
+                        {formatDate(post.date)}
                       </span>
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            )}
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5" />
+                        {post.readTime}
+                      </span>
+                    </div>
+                    <span className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-brand-emerald group-hover:gap-3 transition-all">
+                      Read article
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
           </Container>
         </Section>
       </main>
