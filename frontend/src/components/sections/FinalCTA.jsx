@@ -57,7 +57,7 @@ export const FinalCTA = () => {
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <a
-                href="https://calendly.com/batool-hussein-exceeders/30min?back=1&month=2026-07&date=2026-07-19"
+                href="https://calendly.com/georges-ziadeh-exceeders/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="final-cta-book-consultation"

@@ -158,7 +158,7 @@ export const PAGE_META = {
 
 // Calendly booking URL used by hero CTAs across service pages.
 export const CALENDLY_URL =
-  "https://calendly.com/batool-hussein-exceeders/30min?back=1&month=2026-07&date=2026-07-19";
+  "https://calendly.com/georges-ziadeh-exceeders/30min";
 
 // Sitemap: pages included in indexing.
 export const SITEMAP_PAGES = ["home", "cio", "project", "talent", "support", "dev", "about"];

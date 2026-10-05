@@ -281,7 +281,7 @@ All routes defined in [App.js](frontend/src/App.js) using React Router v6:
 - `/project-plus` → Project Plus (Coming Soon placeholder)
 
 **CTA Links:**  
-All service page CTAs point to Calendly: `https://calendly.com/batool-hussein-exceeders/30min?...`
+All service page CTAs point to Calendly: `https://calendly.com/georges-ziadeh-exceeders/30min`
 
 ---
 

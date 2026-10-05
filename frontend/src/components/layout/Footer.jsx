@@ -101,18 +101,18 @@ export const Footer = () => {
               <li className="text-[14px] text-slate-400 flex items-center gap-2">
                 <Mail className="w-4 h-4 text-brand-sea" />
                 <a
-                  href="mailto:info@exceeders.com"
+                  href="mailto:hello@exceeders.com"
                   data-testid="footer-contact-email"
                   className="hover:text-white transition-colors"
                 >
-                  info@exceeders.com
+                  hello@exceeders.com
                 </a>
               </li>
             </FooterCol>
 
             <div className="mt-8">
               <a
-                href="https://calendly.com/batool-hussein-exceeders/30min?back=1&month=2026-07&date=2026-07-19"
+                href="https://calendly.com/georges-ziadeh-exceeders/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="footer-book-consultation-cta"
