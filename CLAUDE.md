@@ -67,4 +67,8 @@ Frontend `.env`: `REACT_APP_BACKEND_URL` (the API base the SPA calls — AGENTS.
 
 ## Deployment
 
-Target is Azure: frontend → Static Web Apps (needs `staticwebapp.config.json` for SPA fallback routing), backend → App Service / Container Apps, DB → Cosmos DB (Mongo API) or Atlas. Full runbook in [AZURE_DEPLOYMENT.md](AZURE_DEPLOYMENT.md).
+Live frontend (https://explore.exceeders.com) runs on **Azure App Service (Linux, Node)** — app `Exceeders`, resource group `Exceeders` — deployed by pushing the contents of `frontend/build/` to wwwroot (VS Code Azure extension). Startup command must be `node server.js`: `yarn build` copies the zero-dependency [frontend/server.js](frontend/server.js) into `build/` (brotli/gzip, immutable caching for `/static`, real 404s for missing files, SPA fallback to `200.html`). The old `pm2 serve` startup serves no compression or cache headers.
+
+`yarn build` also runs [frontend/scripts/prerender.js](frontend/scripts/prerender.js): headless Chrome (puppeteer-core + local Chrome/Edge, or `CHROME_PATH`) snapshots every route reachable from `/` into `build/<route>/index.html`, and the app bundle boots after first paint. This is what keeps mobile Lighthouse at 100 — don't reintroduce `opacity: 0` *mount* animations on hero `<h1>`/lead text (it delays LCP), and import framer-motion as `m as motion` (App.js wraps everything in `LazyMotion strict`). `/llms.txt` and `/.well-known/ai-catalog.json` (in `public/`) serve Lighthouse's Agentic Browsing checks.
+
+AZURE_DEPLOYMENT.md / `staticwebapp.config.json` describe a Static Web Apps setup that is not what's live. Backend → App Service / Container Apps, DB → Cosmos DB (Mongo API) or Atlas.

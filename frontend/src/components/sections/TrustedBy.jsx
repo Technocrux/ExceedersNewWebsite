@@ -22,6 +22,8 @@ export const LogoBadge = ({ name, src }) => (
   >
     <img
       src={src}
+      width={299}
+      height={80}
       alt={`${name} — trusted eXceeders client`}
       loading="lazy"
       draggable={false}

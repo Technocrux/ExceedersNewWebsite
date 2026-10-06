@@ -2,7 +2,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { ArrowRight, Home, Compass } from "lucide-react";
 
 const QUICK_LINKS = [
@@ -47,16 +47,16 @@ export default function NotFound() {
             Error 404
           </motion.p>
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mt-4 font-display text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05] text-white"
           >
             This page took a wrong turn.
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 12 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
             className="mt-5 max-w-xl mx-auto text-[16px] md:text-[17px] leading-relaxed text-slate-300"
           >

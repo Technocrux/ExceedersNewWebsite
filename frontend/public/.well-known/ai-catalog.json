@@ -1,0 +1,25 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "eXceeders",
+    "documentationUrl": "https://explore.exceeders.com/llms.txt",
+    "logoUrl": "https://explore.exceeders.com/assets/brand/logo-dark.png"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:exceeders.com:site:services-guide",
+      "displayName": "eXceeders services guide",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://explore.exceeders.com/llms.txt",
+      "description": "Plain-Markdown guide to eXceeders' managed IT services (CIO Plus, Talent Plus, Project Plus, Support Plus, Dev Plus), with page links and how to book a consultation.",
+      "tags": ["managed-it", "digital-transformation", "it-services", "gulf", "sme"],
+      "representativeQueries": [
+        "managed IT department for an SME in the Gulf",
+        "hire vetted IT professionals or project managers in the UAE",
+        "find a pre-screened IT provider for a technology project",
+        "outsourced agentic AI and software development team",
+        "book a consultation with eXceeders"
+      ]
+    }
+  ]
+}

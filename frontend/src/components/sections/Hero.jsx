@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { ArrowRight, Zap } from "lucide-react";
 import NetworkDiagram from "@/components/NetworkDiagram";
 
@@ -30,9 +30,11 @@ export const Hero = () => {
               </span>
             </motion.div>
 
+            {/* Headline + lead paragraph are the LCP candidates: slide in, but never start
+                invisible (opacity 0 defers LCP until the animation runs). */}
             <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 16 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.05 }}
               className="mt-6 font-display text-[40px] sm:text-5xl lg:text-[62px] leading-[1.02] tracking-tight font-extrabold text-brand-dark"
             >
@@ -47,8 +49,8 @@ export const Hero = () => {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 12 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="mt-6 max-w-xl text-[17px] md:text-[18px] leading-relaxed text-slate-600"
             >

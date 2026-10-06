@@ -15,7 +15,7 @@ import {
   Eyebrow,
   DifferenceMeansSection,
 } from "@/components/service/ServicePrimitives";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { LOGOS, LogoBadge } from "@/components/sections/TrustedBy";
 import {
   ArrowRight,

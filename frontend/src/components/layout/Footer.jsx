@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Youtube, Mail, ArrowUpRight } from "lucide-react";
 
-const LOGO_URL = "/assets/brand/logo-dark.png";
+const LOGO_URL = "/assets/brand/logo-dark-sm.png";
 
 const FooterCol = ({ title, children }) => (
   <div>
@@ -51,7 +51,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-5">
-            <img src={LOGO_URL} alt="eXceeders" className="h-10 md:h-12 w-auto select-none" draggable={false} />
+            <img src={LOGO_URL} width={462} height={96} alt="eXceeders" className="h-10 md:h-12 w-auto select-none" draggable={false} />
             <p className="mt-6 max-w-md text-[15px] leading-relaxed text-slate-400">
               The smarter way to deliver digital transformation. eXceeders connects
               businesses with the right IT providers and manages every engagement

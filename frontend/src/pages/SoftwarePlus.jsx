@@ -13,7 +13,7 @@ import {
   ServiceFinalCTA,
   Eyebrow,
 } from "@/components/service/ServicePrimitives";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   ShieldCheck, Scale, Zap, LifeBuoy, Target, Sparkles, TrendingUp, Layers, ArrowRight,
 } from "lucide-react";

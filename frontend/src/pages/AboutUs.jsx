@@ -11,7 +11,7 @@ import {
   ServiceFinalCTA,
   Eyebrow,
 } from "@/components/service/ServicePrimitives";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CountUp from "@/components/CountUp";
@@ -134,16 +134,16 @@ export default function AboutUs() {
               <div className="lg:col-span-7">
                 <Eyebrow color="text-brand-sea">About eXceeders</Eyebrow>
                 <motion.h1
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ y: 16 }}
+                  animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.05 }}
                   className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-white"
                 >
                   Technology Expertise, Connected Around Your Business
                 </motion.h1>
                 <motion.p
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ y: 12 }}
+                  animate={{ y: 0 }}
                   transition={{ duration: 0.6, delay: 0.15 }}
                   className="mt-6 max-w-xl text-[17px] md:text-[18.5px] leading-relaxed text-slate-300"
                 >
@@ -243,6 +243,9 @@ export default function AboutUs() {
                     </div>
                     <img
                       src="/assets/team/ahmad-el-chayati.jpg"
+                      width={900}
+                      height={1125}
+                      loading="lazy"
                       alt="Ahmad El Chayati, Founder &amp; General Manager of eXceeders"
                       className="absolute inset-0 w-full h-full object-cover object-top"
                       onError={(e) => { e.currentTarget.style.display = "none"; }}

@@ -15,7 +15,7 @@ import {
   Eyebrow,
   CountUpNumber,
 } from "@/components/service/ServicePrimitives";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   CheckCircle2, Bot, Workflow, RefreshCcw, Search, GitMerge, TrendingUp,
   Zap, ArrowRight,

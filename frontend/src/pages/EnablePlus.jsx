@@ -14,7 +14,7 @@ import {
   ServiceFinalCTA,
   Eyebrow,
 } from "@/components/service/ServicePrimitives";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   CheckCircle2, BookOpen, Monitor, UserCog, Handshake, Workflow, Target,
   ArrowRight,

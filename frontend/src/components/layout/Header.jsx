@@ -4,9 +4,9 @@ import {
   Menu, X, ExternalLink, ChevronDown,
   Compass, ClipboardList, Users, LifeBuoy, Code2,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "framer-motion";
 
-const LOGO_URL = "/assets/brand/logo-white.png";
+const LOGO_URL = "/assets/brand/logo-white-sm.png";
 const WHATSAPP_URL = "https://wa.me/971508183431";
 
 const WhatsAppIcon = ({ className }) => (
@@ -204,6 +204,8 @@ export const Header = () => {
           <Link to="/" data-testid="header-logo-link" className="flex items-center gap-2 shrink-0">
             <img
               src={LOGO_URL}
+              width={308}
+              height={64}
               alt="eXceeders — Managed IT & Digital Transformation"
               className="h-7 md:h-8 w-auto select-none"
               draggable={false}

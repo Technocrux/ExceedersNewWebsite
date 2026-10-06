@@ -14,7 +14,7 @@ import {
   Eyebrow,
   CountUpNumber,
 } from "@/components/service/ServicePrimitives";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   CheckCircle2, Search, ClipboardList, Award, Building2, UserCheck, ArrowRight,
 } from "lucide-react";

@@ -16,7 +16,7 @@ import {
   DifferenceMeansSection,
 } from "@/components/service/ServicePrimitives";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   Compass, Users, Bot, ShieldCheck, ArrowRight, TrendingDown, FolderCheck, Building2, CheckCircle2, Zap, Layers,
   Star, User,
@@ -520,7 +520,9 @@ export default function CIOPlus() {
                       <div className="flex items-center justify-between">
                         <div className="w-[30px] h-[30px] rounded-[9px] bg-white/[0.18] flex items-center justify-center">
                           <img
-                            src="/assets/brand/exceeders-mark.png"
+                            src="/assets/brand/exceeders-mark-sm.png"
+                            width={18}
+                            height={18}
                             alt=""
                             className="w-[18px] h-[18px]"
                             style={{ filter: "brightness(0) invert(1)", opacity: 0.95 }}

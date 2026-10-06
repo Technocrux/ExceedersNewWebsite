@@ -16,7 +16,7 @@ import {
   DifferenceMeansSection,
 } from "@/components/service/ServicePrimitives";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   UserCheck, Handshake, Layers, ArrowRight, Users, TrendingUp, Target, ShieldCheck, RefreshCw, CheckCircle2,
   Star, Briefcase, DollarSign, MapPin, Calendar, User,

@@ -15,7 +15,7 @@ import {
   Eyebrow,
   CountUpNumber,
 } from "@/components/service/ServicePrimitives";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   CheckCircle2, LifeBuoy, UserCog, Gauge, ThumbsUp, Settings2, TrendingUp,
   Headset, GraduationCap, Activity, ArrowRight,

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { TrendingDown, Target, ShieldCheck } from "lucide-react";
 import CountUp from "@/components/CountUp";
 

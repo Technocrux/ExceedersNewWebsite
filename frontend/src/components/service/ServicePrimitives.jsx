@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { m as motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 /** Animated count-up number, triggers once when scrolled into view. */
@@ -156,8 +156,8 @@ export const ServiceHero = ({
               </motion.p>
             )}
             <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 16 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.05 }}
               className={`mt-4 font-display ${titleClassName} font-extrabold tracking-tight leading-[1.02] text-white`}
             >
@@ -165,8 +165,8 @@ export const ServiceHero = ({
             </motion.h1>
             {subtitle && (
               <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: 12 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
                 className={subtitleClassName}
               >

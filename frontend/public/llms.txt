@@ -1,0 +1,32 @@
+# eXceeders
+
+> eXceeders is a Gulf technology ecosystem that connects businesses with the right IT providers and manages every step of digital transformation — IT leadership, specialized talent, trusted providers, project delivery, managed IT support, and AI-native software development. Built for growing SMEs (roughly 20–200 employees) across the Gulf and Middle East.
+
+Engagements start with a free 30-minute consultation: [Book a call](https://calendly.com/georges-ziadeh-exceeders/30min). Email: hello@exceeders.com.
+
+## Solutions
+
+- [CIO Plus](/cio-plus): Managed IT department for growing SMEs — strategy, technology selection, provider management and delivery oversight, without hiring a full in-house IT team.
+- [Advisory+](/cio-plus/advisory-plus): Technology strategy, provider management, project delivery and continuous business alignment.
+- [Productivity+](/cio-plus/productivity-plus): Structured end-user support, workplace administration and productivity optimization for organizations without an internal IT team.
+- [AI+](/cio-plus/ai-plus): Identifies the business processes worth automating, then designs and builds dedicated Agentic AI solutions that run them.
+- [Assurance+](/cio-plus/assurance-plus): Consolidates support across your technology providers into one managed agreement, with pay-as-you-go or prepaid consumption-based pricing.
+- [Talent Plus](/talent-plus): Permanent IT talent, trusted technology providers and vendor-neutral software recommendations in one ecosystem.
+- [Professionals+](/talent-plus/professional-plus): Specialized IT recruiters, AI-powered matching and technical screening; pay only on success.
+- [IT Provider+](/talent-plus/provider-plus): Requirements definition and a technically evaluated shortlist of pre-screened providers, free of charge.
+- [Software+](/talent-plus/software-plus): Vendor-neutral business software comparison and selection with AI-powered matching.
+- [Project Plus](/project-plus): IT project delivery capability as a service — vetted Project Managers, proven methodology and dedicated ProjectOps.
+- [Hire+](/project-plus/hire-plus): Recruits, assesses, trains and supports IT Project Managers before and after placement.
+- [Enable+](/project-plus/enable-plus): Method 3-Pulse playbook, hands-on training and the optional PlanneXe platform for internal PM teams.
+- [Operate+](/project-plus/operate-plus): Dedicated ProjectOps specialists for governance, planning, reporting and compliance.
+- [Support Plus](/support-plus): One managed agreement covering multiple technologies and providers; consume support, projects, subscriptions and specialists based on actual utilization.
+- [Dev Plus](/dev-plus): Fully managed team that designs, builds and evolves AI-native business applications, Agentic AI workflows and secure internal AI infrastructure.
+
+## Company
+
+- [About eXceeders](/about-us): Who we are — one accountable partner across the technology journey.
+- [Resources & Blog](/resources): Insights on IT strategy, technology hiring, project delivery and digital transformation.
+
+## Optional
+
+- [Sitemap](/sitemap.xml)

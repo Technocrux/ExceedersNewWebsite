@@ -16,7 +16,7 @@ import {
   DifferenceMeansSection,
 } from "@/components/service/ServicePrimitives";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   FolderCheck, UserCheck, TrendingUp, UserPlus, GraduationCap,
   ClipboardList, ArrowRight, CheckCircle2, Layers, Star,

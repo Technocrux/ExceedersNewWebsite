@@ -16,7 +16,7 @@ import {
   CountUpNumber,
   DifferenceMeansSection,
 } from "@/components/service/ServicePrimitives";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   Award, FolderCheck, Building2, Palette, Bot, Zap, Users, ClipboardList,
   RefreshCcw, ArrowRight, ShieldCheck, CheckCircle2, Star,

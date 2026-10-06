@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Handshake, Store, Briefcase, ArrowUpRight } from "lucide-react";
 
 const AUDIENCES = [

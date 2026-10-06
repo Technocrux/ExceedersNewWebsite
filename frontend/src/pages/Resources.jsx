@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { ArrowRight, BookOpen, Calendar, Clock, Newspaper } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";

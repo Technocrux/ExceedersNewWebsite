@@ -82,6 +82,14 @@ let webpackConfig = {
   webpack: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      // react-router v7's package exports resolve to its *development* build under webpack;
+      // point production bundles at the smaller production build instead.
+      ...(isDevServer
+        ? {}
+        : {
+            'react-router$': path.resolve(__dirname, 'node_modules/react-router/dist/production/index.mjs'),
+            'react-router/dom$': path.resolve(__dirname, 'node_modules/react-router/dist/production/dom-export.mjs'),
+          }),
     },
     configure: (webpackConfig) => {
 
