@@ -171,7 +171,11 @@ async function main() {
     const results = new Map();
     while (queue.length && results.size < MAX_PAGES) {
       const route = queue.shift();
-      const snap = await snapshot(page, route);
+      // One retry: a single slow page load shouldn't fail the whole build.
+      const snap = await snapshot(page, route).catch((err) => {
+        console.warn(`[prerender] retrying ${route}: ${err.message}`);
+        return snapshot(page, route);
+      });
       if (snap.finalPath !== route) continue; // redirect (e.g. /about -> /about-us)
       results.set(route, render(shell, snap));
       for (const link of snap.links) {
