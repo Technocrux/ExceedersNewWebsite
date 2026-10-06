@@ -15,7 +15,7 @@ import {
 } from "@/components/service/ServicePrimitives";
 import { m as motion } from "framer-motion";
 import {
-  ShieldCheck, Scale, Zap, LifeBuoy, Target, Sparkles, TrendingUp, Layers, ArrowRight,
+  ShieldCheck, Scale, Zap, LifeBuoy, Target, TrendingUp, Layers, ArrowRight,
 } from "lucide-react";
 
 const WHY_GOOD = [
@@ -34,12 +34,6 @@ const PROOF_CAPABILITIES = [
   { title: "Higher Adoption", desc: "Choose solutions users actually accept.", icon: TrendingUp },
   { title: "Faster Acceptance", desc: "Reduce friction during rollout.", icon: Zap },
   { title: "Better Business Fit", desc: "Select the right solution from the start.", icon: Target },
-];
-
-const PROOF = [
-  { title: "Independent Guidance", desc: "No vendor bias.", icon: ShieldCheck },
-  { title: "Business-Fit Evaluation", desc: "Recommendations based on your needs.", icon: Target },
-  { title: "Smarter Software Decisions", desc: "Choose with more confidence.", icon: Sparkles },
 ];
 
 const CHALLENGES = [
@@ -236,40 +230,8 @@ export default function SoftwarePlus() {
           </Container>
         </Section>
 
-        {/* Trust & Credibility */}
-        <Section className="bg-white">
-          <Container>
-            <div className="max-w-3xl">
-              <Eyebrow>Trust & Credibility</Eyebrow>
-              <h2 className="mt-4 font-display text-3xl md:text-4xl font-extrabold text-brand-dark leading-tight">
-                Technology Experts. Independent Advice.
-              </h2>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 auto-rows-fr gap-5">
-              {PROOF.map((p, i) => (
-                <motion.div
-                  key={p.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                  whileHover={{ y: -4 }}
-                  className="h-full flex flex-col rounded-2xl bg-[#F7F9FA] border border-brand-emerald/10 p-6"
-                >
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: "#C6E5DE" }}>
-                    <p.icon className="w-5 h-5 text-brand-emerald" strokeWidth={1.9} />
-                  </div>
-                  <p className="mt-5 font-display text-[16px] font-bold text-brand-dark leading-tight">{p.title}</p>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-slate-600">{p.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
         {/* The Challenge */}
-        <Section className="bg-[#F7F9FA]">
+        <Section className="bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               <div className="lg:col-span-6">
@@ -298,7 +260,7 @@ export default function SoftwarePlus() {
         </Section>
 
         {/* Our Solution */}
-        <Section className="bg-white" id="our-solution">
+        <Section className="bg-[#F7F9FA]" id="our-solution">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-2 gap-4 lg:gap-6">
               <div className="lg:col-start-1 lg:col-span-4 lg:row-start-1">
@@ -321,7 +283,7 @@ export default function SoftwarePlus() {
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5, delay: i * 0.06 }}
                   whileHover={{ y: -4 }}
-                  className={`h-full flex flex-col rounded-2xl bg-[#F7F9FA] border border-slate-200/70 p-6 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all lg:row-start-1 ${
+                  className={`h-full flex flex-col rounded-2xl bg-white border border-slate-200/70 p-6 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all lg:row-start-1 ${
                     i === 0 ? "lg:col-start-5 lg:col-span-4 accent-glow-right" : "lg:col-start-9 lg:col-span-4 accent-glow-top-right"
                   }`}
                 >
@@ -341,7 +303,7 @@ export default function SoftwarePlus() {
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5, delay: 0.12 + i * 0.06 }}
                   whileHover={{ y: -4 }}
-                  className={`h-full flex flex-col rounded-2xl bg-[#F7F9FA] border border-slate-200/70 p-6 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all lg:row-start-2 ${
+                  className={`h-full flex flex-col rounded-2xl bg-white border border-slate-200/70 p-6 hover:border-brand-emerald/30 hover:shadow-xl hover:shadow-slate-900/5 transition-all lg:row-start-2 ${
                     i === 0 ? "lg:col-start-1 lg:col-span-4 accent-glow-corner" : i === 1 ? "lg:col-start-5 lg:col-span-4 accent-glow-bottom" : "lg:col-start-9 lg:col-span-4 accent-glow-bottom-right"
                   }`}
                 >
@@ -357,7 +319,7 @@ export default function SoftwarePlus() {
         </Section>
 
         {/* Pricing */}
-        <Section className="bg-[#F7F9FA]" id="pricing">
+        <Section className="bg-white" id="pricing">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
               <div>
@@ -398,7 +360,7 @@ export default function SoftwarePlus() {
                   className={`h-full flex flex-col rounded-2xl border p-7 ${
                     p.highlight
                       ? "bg-gradient-to-br from-[#07404B] to-[#0D1F2D] border-transparent"
-                      : "bg-white border-slate-200/70"
+                      : "bg-[#F7F9FA] border-slate-200/70"
                   }`}
                 >
                   <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${p.highlight ? "text-brand-sea" : "text-slate-500"}`}>
@@ -427,7 +389,7 @@ export default function SoftwarePlus() {
         </Section>
 
         {/* How We Do It */}
-        <Section className="bg-white">
+        <Section className="bg-[#F7F9FA]">
           <Container>
             <div className="max-w-2xl">
               <Eyebrow>How We Do It</Eyebrow>
